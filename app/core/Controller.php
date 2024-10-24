@@ -27,7 +27,7 @@ class Controller {
   * @param  array   $data   Dados a exibir na view
   */
   public function view(string $view, $data = []) {
-    $url_alias = '/moviesappf1';
+    $url_alias = '/projetopw';
     require 'app/views/' . $view . '.php';
   }
 
