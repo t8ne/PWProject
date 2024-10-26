@@ -9,7 +9,8 @@ Esta classe é responsável por:
   - Índices restantes: parâmetros do método
 ====================================================================== */
 namespace app\core;
-class App {
+class App
+{
   private $controller;
   private $method;
   private $params;
@@ -17,7 +18,8 @@ class App {
   private $startIndexFromUrl;
   private $pageNotFound;
 
-  public function __construct() {
+  public function __construct()
+  {
     $this->controller = 'Home';
     $this->method = 'index';
     $this->params = [];
@@ -27,7 +29,7 @@ class App {
     $this->setController();
     $this->setMethodFromUrl();
     $this->setParamsFromUrl();
-    
+
     // Invocação de um método de uma classe de forma dinâmica
     // ================================================================
     // chama um método de uma classe passando os parâmetros
@@ -36,10 +38,11 @@ class App {
   }
 
   /**
-  * Método responsável pela manipulação do URL (ignora o domínio do site)
-  *
-  */
-  private function parseURL() {
+   * Método responsável pela manipulação do URL (ignora o domínio do site)
+   *
+   */
+  private function parseURL()
+  {
     $this->URLArray = explode('/', substr($_SERVER['REQUEST_URI'], 1));
     // $_SERVER['REQUEST_URI'] - Exemplo:
     // para: http://www.ipvc.pt/ecgm/ano3.php?uc=pw
@@ -47,12 +50,13 @@ class App {
   }
 
   /**
-  * Método que instancia um controlador.
-  * Este método verifica se o array possui dados na posição 0 -> CONTROLADOR
-  * e define-o
-  *
-  */
-  private function setController() {
+   * Método que instancia um controlador.
+   * Este método verifica se o array possui dados na posição 0 -> CONTROLADOR
+   * e define-o
+   *
+   */
+  private function setController()
+  {
     $controller = $this->URLArray[$this->startIndexFromUrl];
     if (isset($controller) && !empty($controller)) {
       if (file_exists('app/controllers/' . ucfirst($controller) . '.php')) {
@@ -66,14 +70,15 @@ class App {
   }
 
   /**
-  * Este método verifica se o array possui dados na posição 1 -> MÉTODO
-  * e define-o
-  *
-  */
-  private function setMethodFromUrl() {
+   * Este método verifica se o array possui dados na posição 1 -> MÉTODO
+   * e define-o
+   *
+   */
+  private function setMethodFromUrl()
+  {
     $url = $this->URLArray;
     $startIndex = $this->startIndexFromUrl + 1;
-    
+
     if (!empty($url[$startIndex]) && isset($url[$startIndex])) {
       if (method_exists($this->controller, $url[$startIndex]) && !$this->pageNotFound) {
         $this->method = $url[$startIndex];
@@ -84,18 +89,19 @@ class App {
   }
 
   /**
-  * Este método verifica se o array possui a quantidade de elementos maior do que 2 -> PARÂMETROS
-  * e define-o
-  *
-  */
-  private function setParamsFromUrl() {
+   * Este método verifica se o array possui a quantidade de elementos maior do que 2 -> PARÂMETROS
+   * e define-o
+   *
+   */
+  private function setParamsFromUrl()
+  {
     $url = $this->URLArray;
     $startIndex = $this->startIndexFromUrl + 2;
     if (count($url) > $startIndex) {
       $this->params = array_slice($url, $startIndex);
     }
   }
-  
+
 }
 
 /*
@@ -113,4 +119,3 @@ Método parseURL:
   devolve o endereço (URL) do ficheiro PHP em execução, incluíndo a informação 
   do caminho e a query string (parâmetros). É incluído o slash inicial.
 */
-?>

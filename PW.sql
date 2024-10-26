@@ -1,0 +1,43 @@
+CREATE DATABASE projeto_pw;
+USE projeto_pw;
+
+CREATE TABLE Album (
+    id_album INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255),
+    data DATE
+);
+
+CREATE TABLE Genero (
+    id_genero INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255),
+    id_album INT,
+    FOREIGN KEY (id_album) REFERENCES Album(id_album)
+);
+
+CREATE TABLE Produtor (
+    id_produtor INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255),
+    nacionalidade VARCHAR(255)
+);
+
+CREATE TABLE Musica (
+    id_musica INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255),
+    tempo DOUBLE,
+    id_album INT DEFAULT NULL,
+    id_artista INT,
+    id_produtor INT,
+    FOREIGN KEY (id_album) REFERENCES Album(id_album),
+    FOREIGN KEY (id_produtor) REFERENCES Produtor(id_produtor)
+);
+
+CREATE TABLE Artista (
+    id_artista INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255),
+    idade INT,
+    nacionalidade VARCHAR(255),
+    id_album INT,
+    id_musica INT,
+    FOREIGN KEY (id_album) REFERENCES Album(id_album),
+    FOREIGN KEY (id_musica) REFERENCES Musica(id_musica)
+);
