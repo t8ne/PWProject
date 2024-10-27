@@ -4,7 +4,6 @@ use app\core\Controller;
 
 class Album extends Controller
 {
-
     public function index()
     {
         $Albums = $this->model('Album');
@@ -61,6 +60,9 @@ class Album extends Controller
             $this->view('album/index', ['albums' => $data, 'info' => $info, 'type' => 'UPDATE']);
         } else {
             $data = $Albums::findAlbumById($id);
+            if (empty($data)) {
+                $this->pageNotFound(); // Se o álbum não existir, redirecionar para a página 404
+            }
             $artistas = $Artistas::getAllArtistas();
             $this->view('album/update', ['album' => $data, 'artistas' => $artistas]);
         }

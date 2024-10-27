@@ -15,7 +15,7 @@ class Artista
     public static function findArtistaById(int $id)
     {
         $conn = new Db();
-        return $conn->execQuery('SELECT id_artista, nome FROM Artista WHERE id_artista = ?', array('i', array($id)));
+        return $conn->execQuery('SELECT * FROM Artista WHERE id_artista = ?', ['i', [$id]]);
     }
 
     public static function addArtista($data): bool
@@ -27,14 +27,22 @@ class Artista
         )) ? true : false;
     }
 
-    public static function updateArtista($id, $data): bool
+    public static function updateArtist($id, $data)
     {
         $conn = new Db();
-        return $conn->execQuery('UPDATE Artista SET nome = ? WHERE id_artista = ?', array(
+        $result = $conn->execQuery('UPDATE Artist SET nome = ? WHERE id_artista = ?', [
             'si',
-            array($data['nome'], $id)
-        )) ? true : false;
+            [$data['nome'], $id]
+        ]);
+
+        // Verifica se a atualização foi bem-sucedida
+        if ($result) {
+            // Retorna os dados atualizados
+            return $conn->execQuery('SELECT * FROM Artist WHERE id_artista = ?', ['i', [$id]]);
+        }
+        return false; // Retorna false se a atualização falhar
     }
+
 
     public static function deleteArtista($id): bool
     {

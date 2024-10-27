@@ -2,7 +2,8 @@
 <a href="<?php echo $url_alias; ?>/artista/create">NOVO</a>
 
 <?php
-if (isset($data['info']) && isset($data['type'])) {
+// Verifica se 'info' e 'type' existem e têm valores válidos
+if (isset($data['info']) && is_array($data['info']) && isset($data['type'])) {
     $type = $data['type'];
     switch ($type) {
         case 'INSERT':
@@ -17,7 +18,7 @@ if (isset($data['info']) && isset($data['type'])) {
     }
 }
 
-// Check if 'artistas' exists and is an array
+// Verifica se 'artistas' existe e é um array
 if (isset($data['artistas']) && is_array($data['artistas'])) {
     if (count($data['artistas']) > 0) {
         echo '<ul>';

@@ -1,28 +1,23 @@
 <?php
-// debug
-// print_r($data);
-?>
-
-<?php
-if (count($data['artists']) == 0) {
+// Verifica se `artista` está definido e tem dados
+if (isset($data['artista']) && is_array($data['artista']) && count($data['artista']) > 0) {
     ?>
-    <h1>O artista não existe na nossa base de dados...</h1>
-<?php
+    <div>
+        <?php
+        echo "Nome: " . htmlspecialchars($data['artista'][0]['nome']);
+        ?>
+    </div>
+
+    <div>
+        <?php
+        echo "Nacionalidade: " . (isset($data['artista']['nacionalidade']) ? htmlspecialchars($data['artista']['nacionalidade']) : "N/A");
+        ?>
+    </div>
+    <?php
 } else {
     ?>
-
-    <div>
-        <?php
-        echo "Nome: " . $data['artists'][0]['nome'];
-        ?>
-    </div>
-
-    <div>
-        <?php
-        echo "Nacionalidade: " . $data['artists'][0]['nacionalidade'];
-        ?>
-    </div>
-<?php
+    <h1>O artista não existe na nossa base de dados...</h1>
+    <?php
 }
 ?>
 <a href="<?php echo $url_alias; ?>/artista">Voltar</a>

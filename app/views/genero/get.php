@@ -1,28 +1,17 @@
 <?php
-// debug
-// print_r($data);
-?>
-
-<?php
-if (count($data['generos']) == 0) {
+if (empty($data['genero'])) { // Check if the genre data is empty
     ?>
     <h1>O género não existe na nossa base de dados...</h1>
-<?php
+    <?php
 } else {
     ?>
-
     <div>
-        <?php
-        echo "Nome: " . $data['generos'][0]['nome'];
-        ?>
+        <strong>Nome:</strong> <?php echo htmlspecialchars($data['genero'][0]['nome']); ?>
     </div>
-
     <div>
-        <?php
-        echo "Álbum: " . $data['generos'][0]['id_album'];
-        ?>
+        <strong>Álbum:</strong> <?php echo htmlspecialchars($data['genero'][0]['id_album']); ?>
     </div>
-<?php
+    <?php
 }
 ?>
 <a href="<?php echo $url_alias; ?>/genero">Voltar</a>

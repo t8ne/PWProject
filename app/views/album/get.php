@@ -1,28 +1,17 @@
 <?php
-// debug
-// print_r($data);
-?>
-
-<?php
-if (count($data['albums']) == 0) {
+if (empty($data['album'])) {
     ?>
     <h1>O álbum não existe na nossa base de dados...</h1>
-<?php
+    <?php
 } else {
     ?>
-
     <div>
-        <?php
-        echo "Nome: " . $data['albums'][0]['nome'];
-        ?>
+        <strong>Nome:</strong> <?php echo htmlspecialchars($data['album'][0]['nome']); ?>
     </div>
-
     <div>
-        <?php
-        echo "Data: " . $data['albums'][0]['data'];
-        ?>
+        <strong>Data:</strong> <?php echo htmlspecialchars($data['album'][0]['data']); ?>
     </div>
-<?php
+    <?php
 }
 ?>
 <a href="<?php echo $url_alias; ?>/album">Voltar</a>
