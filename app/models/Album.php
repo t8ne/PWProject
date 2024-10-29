@@ -12,49 +12,45 @@ class Album
         return $conn->execQuery('SELECT id_album, nome, data, id_artista FROM Album');
     }
 
-    public static function findAlbumById(int $id)
+    public static function findAlbumById($id)
     {
-        $conn = new Db();
-        return $conn->execQuery('SELECT id_album, nome, data, id_artista FROM Album WHERE id_album = ?', ['i', [$id]]);
+        $db = new Db();
+        $sql = "SELECT id_album, nome, data, id_artista, id_genero FROM Album WHERE id_album = ?";
+        return $db->execQuery($sql, [$id]);
     }
 
-    public static function addAlbum($data): bool
+    public static function addAlbum($albumData)
     {
-        $conn = new Db();
-        return $conn->execQuery('INSERT INTO Album (nome, data, id_artista) VALUES (?, ?, ?)', [
-            'ssi',
-            [$data['nome'], $data['data'], $data['id_artista']]
-        ]) ? true : false;
+        $db = new Db();
+        $sql = "INSERT INTO Album (nome, data, id_artista, id_genero) VALUES (?, ?, ?, ?)";
+        $params = [
+            $albumData['nome'],
+            $albumData['data'],
+            $albumData['id_artista'],
+            $albumData['id_genero']
+        ];
+        return $db->execQuery($sql, $params);
     }
 
-    public static function updateAlbum($id, $data): bool
+    public static function deleteAlbum($id)
     {
-        $conn = new Db();
-        // Execute the update query
-        $result = $conn->execQuery('UPDATE Album SET nome = ?, data = ?, id_artista = ? WHERE id_album = ?', array(
-            'ssii',
-            array($data['nome'], $data['data'], $data['id_artista'], $id)
-        ));
-
-        // Check if the update was successful
-        if ($result) {
-            // The operation was successful
-            return true; // Return true on success
-        }
-        // Return false if the operation failed
-        return false;
+        $db = new Db();
+        $sql = "DELETE FROM Album WHERE id_album = ?";
+        return $db->execQuery($sql, [$id]);
     }
 
-
-
-    public static function deleteAlbum($id): bool
-{
-    $conn = new Db();
-    // Execute the delete query
-    return $conn->execQuery('DELETE FROM Album WHERE id_album = ?', array(
-        'i',
-        array($id)
-    )) ? true : false; // Returns true if the delete was successful, false otherwise
-}
+    public static function updateAlbum($id, $albumData)
+    {
+        $db = new Db();
+        $sql = "UPDATE Album SET nome = ?, data = ?, id_artista = ?, id_genero = ? WHERE id_album = ?";
+        $params = [
+            $albumData['nome'],
+            $albumData['data'],
+            $albumData['id_artista'],
+            $albumData['id_genero'],
+            $id
+        ];
+        return $db->execQuery($sql, $params);
+    }
 
 }

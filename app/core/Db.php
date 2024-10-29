@@ -24,13 +24,17 @@ class Db
     $this->conn->set_charset("utf8");
   }
 
-  private function setParameters(mysqli_stmt $stmt, array $parameters)
+  public function setParameters($stmt, array $parameters)
   {
-    if (count($parameters)) {
-      $types = $parameters[0];
-      $values = $parameters[1];
-      $stmt->bind_param($types, ...$values);
+    if (empty($parameters)) {
+      return; // No parameters to bind
     }
+
+    // Define the `types` string based on the number of parameters
+    $types = str_repeat('s', count($parameters)); // 's' for strings; adjust as needed
+
+    // Bind the parameters to the statement
+    $stmt->bind_param($types, ...$parameters);
   }
 
   public function execQuery(string $sql, array $parameters = [])
@@ -40,25 +44,24 @@ class Db
       die("Query preparation failed: " . $this->conn->error . " SQL: " . $sql);
     }
 
-    $this->setParameters($stmt, $parameters);
+    if (!empty($parameters)) {
+      $types = str_repeat('s', count($parameters));
+      $stmt->bind_param($types, ...$parameters);
+    }
 
-    // Execute the statement
     if (!$stmt->execute()) {
       die("Query execution failed: " . $stmt->error . " SQL: " . $sql);
     }
 
-    // Determine the type of query and handle responses
     if (stripos(trim($sql), 'SELECT') === 0) {
-      return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+      $result = $stmt->get_result();
+      return $result->fetch_all(MYSQLI_ASSOC);
     } elseif (stripos(trim($sql), 'INSERT') === 0) {
-      return $this->conn->insert_id; // Return the last inserted ID
-    } elseif (stripos(trim($sql), 'UPDATE') === 0) {
-      return $stmt->affected_rows > 0; // Return true if rows were updated
-    } elseif (stripos(trim($sql), 'DELETE') === 0) {
-      return $stmt->affected_rows > 0; // Return true if rows were deleted
+      return $this->conn->insert_id;
+    } elseif (stripos(trim($sql), 'UPDATE') === 0 || stripos(trim($sql), 'DELETE') === 0) {
+      return $stmt->affected_rows;
     }
 
-    return null; // For any other queries (though we expect SELECT, INSERT, UPDATE, DELETE)
+    return null;
   }
-
 }

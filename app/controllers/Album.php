@@ -26,12 +26,14 @@ class Album extends Controller
     {
         $Albums = $this->model('Album');
         $Artistas = $this->model('Artista');
+        $Generos = $this->model('Genero');
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $newAlbumData = [
                 'nome' => $_POST['nome'],
                 'data' => $_POST['data'],
-                'id_artista' => $_POST['id_artista']
+                'id_artista' => $_POST['id_artista'],
+                'id_genero' => $_POST['id_genero']
             ];
             $info = $Albums::addAlbum($newAlbumData);
 
@@ -39,32 +41,8 @@ class Album extends Controller
             $this->view('album/index', ['albums' => $data, 'info' => $info, 'type' => 'INSERT']);
         } else {
             $artistas = $Artistas::getAllArtistas();
-            $this->view('album/create', ['artistas' => $artistas]);
-        }
-    }
-
-    public function update($id = null)
-    {
-        $Albums = $this->model('Album');
-        $Artistas = $this->model('Artista');
-
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $updatedAlbumData = [
-                'nome' => $_POST['nome'],
-                'data' => $_POST['data'],
-                'id_artista' => $_POST['id_artista']
-            ];
-            $info = $Albums::updateAlbum($id, $updatedAlbumData);
-
-            $data = $Albums::getAllAlbums();
-            $this->view('album/index', ['albums' => $data, 'info' => $info, 'type' => 'UPDATE']);
-        } else {
-            $data = $Albums::findAlbumById($id);
-            if (empty($data)) {
-                $this->pageNotFound(); // Se o álbum não existir, redirecionar para a página 404
-            }
-            $artistas = $Artistas::getAllArtistas();
-            $this->view('album/update', ['album' => $data, 'artistas' => $artistas]);
+            $generos = $Generos::getAllGeneros();
+            $this->view('album/create', ['artistas' => $artistas, 'generos' => $generos]);
         }
     }
 
@@ -78,6 +56,34 @@ class Album extends Controller
             $this->view('album/index', ['albums' => $data, 'info' => $info, 'type' => 'DELETE']);
         } else {
             $this->pageNotFound();
+        }
+    }
+
+    public function update($id = null)
+    {
+        $Albums = $this->model('Album');
+        $Artistas = $this->model('Artista');
+        $Generos = $this->model('Genero');
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $updatedAlbumData = [
+                'nome' => $_POST['nome'] ?? '',
+                'data' => $_POST['data'] ?? '',
+                'id_artista' => $_POST['id_artista'] ?? '',
+                'id_genero' => $_POST['id_genero'] ?? ''
+            ];
+            $info = $Albums::updateAlbum($id, $updatedAlbumData);
+
+            $data = $Albums::getAllAlbums();
+            $this->view('album/index', ['albums' => $data, 'info' => $info, 'type' => 'UPDATE']);
+        } else {
+            $data = $Albums::findAlbumById($id);
+            if (empty($data)) {
+                $this->pageNotFound();
+            }
+            $artistas = $Artistas::getAllArtistas();
+            $generos = $Generos::getAllGeneros();
+            $this->view('album/update', ['album' => $data, 'artistas' => $artistas, 'generos' => $generos]);
         }
     }
 }

@@ -12,25 +12,15 @@ class Artista extends Controller
         $this->view('artista/index', ['artistas' => $data]);
     }
 
-    public function get($id = null)
-    {
-        if (is_numeric($id)) {
-            $Artistas = $this->model('Artista');
-            $data = $Artistas::findArtistaById($id);
-
-            // Assegura que $data é um array válido (mesmo que vazio) para evitar erros na view
-            $this->view('artista/get', ['artista' => $data ? $data : []]);
-        } else {
-            $this->pageNotFound();
-        }
-    }
-
     public function create()
     {
         $Artistas = $this->model('Artista');
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $newArtistaData = ['nome' => $_POST['nome']];
+            $newArtistaData = [
+                'nome' => $_POST['nome'] ?? '',
+                'nacionalidade' => $_POST['nacionalidade'] ?? ''
+            ];
             $info = $Artistas::addArtista($newArtistaData);
 
             $data = $Artistas::getAllArtistas();
@@ -40,31 +30,43 @@ class Artista extends Controller
         }
     }
 
+    public function get($id = null)
+    {
+        if (is_numeric($id)) {
+            $Artistas = $this->model('Artista');
+            $data = $Artistas::findArtistaById($id);
+            if ($data) {
+                $this->view('artista/get', ['artista' => $data]);
+            } else {
+                $this->pageNotFound();
+            }
+        } else {
+            $this->pageNotFound();
+        }
+    }
+
     public function update($id = null)
     {
         $Artistas = $this->model('Artista');
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $updatedArtistData = [
-                'nome' => $_POST['nome']
+            $updatedArtistaData = [
+                'nome' => $_POST['nome'] ?? '',
+                'nacionalidade' => $_POST['nacionalidade'] ?? ''
             ];
-            $info = $Artistas::updateArtist($id, $updatedArtistData);
+            $info = $Artistas::updateArtista($id, $updatedArtistaData);
 
-            if ($info) {
-                // Se a atualização foi bem-sucedida, obtenha os dados atualizados
-                $data = $Artistas::findArtistById($id);
-                $this->view('artista/index', ['info' => $info, 'artista' => $data]);
-            } else {
-                // Trate o caso em que a atualização falhou
-                $this->view('artista/index', ['info' => ['nome' => 'Erro ao atualizar o artista']]);
-            }
+            $data = $Artistas::getAllArtistas();
+            $this->view('artista/index', ['artistas' => $data, 'info' => $info, 'type' => 'UPDATE']);
         } else {
-            // Código para exibir o formulário de edição
+            $data = $Artistas::findArtistaById($id);
+            if ($data) {
+                $this->view('artista/update', ['artista' => $data]);
+            } else {
+                $this->pageNotFound();
+            }
         }
     }
-
-
-
     public function delete($id = null)
     {
         if (is_numeric($id)) {
@@ -77,4 +79,5 @@ class Artista extends Controller
             $this->pageNotFound();
         }
     }
+
 }

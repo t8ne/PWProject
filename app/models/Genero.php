@@ -9,36 +9,35 @@ class Genero
     public static function getAllGeneros()
     {
         $conn = new Db();
-        return $conn->execQuery('SELECT id_genero, nome, id_album FROM Genero');
+        return $conn->execQuery('SELECT id_genero, nome FROM Genero');
     }
 
-    public static function findGeneroById(int $id)
+    public static function findGeneroById($id)
     {
-        $conn = new Db();
-        return $conn->execQuery('SELECT id_genero, nome, id_album FROM Genero WHERE id_genero = ?', ['i', [$id]]);
+        $db = new Db();
+        $sql = "SELECT id_genero, nome FROM Genero WHERE id_genero = ?";
+        return $db->execQuery($sql, [$id]);
     }
 
-    public static function addGenero($data): bool
+    public static function updateGenero($id, $generoData)
     {
-        $conn = new Db();
-        return $conn->execQuery('INSERT INTO Genero (nome, id_album) VALUES (?, ?)', [
-            'si',
-            [$data['nome'], $data['id_album']]
-        ]) ? true : false;
+        $db = new Db();
+        $sql = "UPDATE Genero SET nome = ? WHERE id_genero = ?";
+        $params = [$generoData['nome'], $id];
+        return $db->execQuery($sql, $params);
     }
 
-    public static function updateGenero($id, $data): bool
+    public static function addGenero($data)
     {
-        $conn = new Db();
-        return $conn->execQuery('UPDATE Genero SET nome = ?, id_album = ? WHERE id_genero = ?', [
-            'ssi',
-            [$data['nome'], $data['id_album'], $id]
-        ]) ? true : false;
+        $db = new Db();
+        $sql = "INSERT INTO Genero (nome) VALUES (?)";
+        return $db->execQuery($sql, [$data['nome']]);
     }
 
-    public static function deleteGenero($id): bool
+    public static function deleteGenero($id)
     {
-        $conn = new Db();
-        return $conn->execQuery('DELETE FROM Genero WHERE id_genero = ?', ['i', [$id]]) ? true : false;
+        $db = new Db();
+        $sql = "DELETE FROM Genero WHERE id_genero = ?";
+        return $db->execQuery($sql, [$id]);
     }
 }

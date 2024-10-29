@@ -6,50 +6,41 @@ use app\core\Db;
 
 class Artista
 {
+    public static function addArtista($artistaData)
+    {
+        $db = new Db();
+        $sql = "INSERT INTO Artista (nome, nacionalidade) VALUES (?, ?)";
+        $params = [$artistaData['nome'], $artistaData['nacionalidade']];
+        return $db->execQuery($sql, $params);
+    }
+
+    public static function findArtistaById($id)
+    {
+        $db = new Db();
+        $sql = "SELECT * FROM Artista WHERE id_artista = ?";
+        $result = $db->execQuery($sql, [$id]);
+        return $result ? $result[0] : null;
+    }
+
+    public static function updateArtista($id, $artistaData)
+    {
+        $db = new Db();
+        $sql = "UPDATE Artista SET nome = ?, nacionalidade = ? WHERE id_artista = ?";
+        $params = [$artistaData['nome'], $artistaData['nacionalidade'], $id];
+        return $db->execQuery($sql, $params);
+    }
+
     public static function getAllArtistas()
     {
-        $conn = new Db();
-        return $conn->execQuery('SELECT id_artista, nome FROM Artista');
+        $db = new Db();
+        $sql = "SELECT * FROM Artista";
+        return $db->execQuery($sql);
     }
 
-    public static function findArtistaById(int $id)
+    public static function deleteArtista($id)
     {
-        $conn = new Db();
-        return $conn->execQuery('SELECT * FROM Artista WHERE id_artista = ?', ['i', [$id]]);
-    }
-
-    public static function addArtista($data): bool
-    {
-        $conn = new Db();
-        return $conn->execQuery('INSERT INTO Artista (nome) VALUES (?)', array(
-            's',
-            array($data['nome'])
-        )) ? true : false;
-    }
-
-    public static function updateArtist($id, $data)
-    {
-        $conn = new Db();
-        $result = $conn->execQuery('UPDATE Artist SET nome = ? WHERE id_artista = ?', [
-            'si',
-            [$data['nome'], $id]
-        ]);
-
-        // Verifica se a atualização foi bem-sucedida
-        if ($result) {
-            // Retorna os dados atualizados
-            return $conn->execQuery('SELECT * FROM Artist WHERE id_artista = ?', ['i', [$id]]);
-        }
-        return false; // Retorna false se a atualização falhar
-    }
-
-
-    public static function deleteArtista($id): bool
-    {
-        $conn = new Db();
-        return $conn->execQuery('DELETE FROM Artista WHERE id_artista = ?', array(
-            'i',
-            array($id)
-        )) ? true : false;
+        $db = new Db();
+        $sql = "DELETE FROM Artista WHERE id_artista = ?";
+        return $db->execQuery($sql, [$id]);
     }
 }

@@ -1,16 +1,17 @@
 <?php
 // Verifica se `artista` está definido e tem dados
-if (isset($data['artista']) && is_array($data['artista']) && count($data['artista']) > 0) {
+if (isset($data['artista']) && is_array($data['artista']) && !empty($data['artista'])) {
+    $artista = $data['artista'];
     ?>
     <div>
         <?php
-        echo "Nome: " . htmlspecialchars($data['artista'][0]['nome']);
+        echo "Nome: " . htmlspecialchars($artista['nome'] ?? '');
         ?>
     </div>
 
     <div>
         <?php
-        echo "Nacionalidade: " . (isset($data['artista']['nacionalidade']) ? htmlspecialchars($data['artista']['nacionalidade']) : "N/A");
+        echo "Nacionalidade: " . htmlspecialchars($artista['nacionalidade'] ?? 'N/A');
         ?>
     </div>
     <?php
@@ -20,4 +21,4 @@ if (isset($data['artista']) && is_array($data['artista']) && count($data['artist
     <?php
 }
 ?>
-<a href="<?php echo $url_alias; ?>/artista">Voltar</a>
+<a href="<?php echo htmlspecialchars($url_alias ?? ''); ?>/artista">Voltar</a>
