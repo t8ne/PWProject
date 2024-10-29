@@ -53,5 +53,33 @@ class Musica
         return $db->execQuery($sql, [$id]);
     }
 
+    public static function getMusicasByAlbum($albumId)
+    {
+        $db = new Db(); // Instância da classe de conexão com o banco de dados
+        $sql = "SELECT * FROM Musica WHERE id_album = ?";
+        return $db->execQuery($sql, [$albumId]);
+    }
+
+    public static function getMusicasByProdutor($produtorId)
+    {
+        $db = new Db();
+        $sql = "SELECT * FROM Musica WHERE id_produtor = ?";
+        return $db->execQuery($sql, [$produtorId]);
+    }
+
+    public static function countMusicasByAlbum($albumId)
+    {
+        $db = new Db();
+        $sql = "SELECT COUNT(*) AS total FROM Musica WHERE id_album = ?";
+        $result = $db->execQuery($sql, [$albumId]);
+        return $result[0]['total'] ?? 0; // Retorna o número de músicas associadas
+    }
+
+    public static function deleteMusicasByAlbum($albumId)
+    {
+        $db = new Db();
+        $sql = "DELETE FROM Musica WHERE id_album = ?";
+        return $db->execQuery($sql, [$albumId]);
+    }
 
 }

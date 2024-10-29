@@ -67,11 +67,44 @@ class Album
         return $db->execQuery($sql, [$generoId]);
     }
 
-    public static function getMusicasByAlbum($albumId)
+    public static function countMusicasByAlbum($albumId)
     {
         $db = new Db();
-        $sql = "SELECT m.*, p.nome as produtor_nome FROM Musica m LEFT JOIN Produtor p ON m.id_produtor = p.id_produtor WHERE m.id_album = ?";
-        return $db->execQuery($sql, [$albumId]);
+        $sql = "SELECT COUNT(*) AS total FROM Musica WHERE id_album = ?";
+        $result = $db->execQuery($sql, [$albumId]);
+        return $result[0]['total'] ?? 0;
     }
+
+    public static function countAlbumsByArtista($artistaId)
+    {
+        $db = new Db();
+        $sql = "SELECT COUNT(*) AS total FROM Album WHERE id_artista = ?";
+        $result = $db->execQuery($sql, [$artistaId]);
+        return $result[0]['total'] ?? 0; // Retorna o número de álbuns associados
+    }
+
+
+    public static function deleteAlbumsByArtista($artistaId)
+    {
+        $db = new Db();
+        $sql = "DELETE FROM Album WHERE id_artista = ?";
+        return $db->execQuery($sql, [$artistaId]);
+    }
+
+    public static function countAlbumsByGenero($generoId)
+    {
+        $db = new Db();
+        $sql = "SELECT COUNT(*) AS total FROM Album WHERE id_genero = ?";
+        $result = $db->execQuery($sql, [$generoId]);
+        return $result[0]['total'] ?? 0; // Retorna o número de álbuns associados
+    }
+
+    public static function deleteAlbumsByGenero($generoId)
+    {
+        $db = new Db();
+        $sql = "DELETE FROM Album WHERE id_genero = ?";
+        return $db->execQuery($sql, [$generoId]);
+    }
+
 
 }

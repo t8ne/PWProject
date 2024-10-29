@@ -68,8 +68,36 @@ class Artista extends Controller
     public function delete($id = null)
     {
         if (is_numeric($id)) {
+            $Albums = $this->model('Album');
+            $albumCount = $Albums::countAlbumsByArtista($id); // Contar álbuns associados
+
+            if ($albumCount > 0) {
+                // Se houver álbuns associados, pedir confirmação ao usuário
+                $info = "Este artista possui $albumCount álbuns associados. Deseja excluir todos os álbuns associados junto com o artista?";
+                $this->view('artista/confirmDelete', ['artista_id' => $id, 'info' => $info]);
+            } else {
+                // Se não houver álbuns, excluir o artista diretamente
+                $Artistas = $this->model('Artista');
+                $info = $Artistas::deleteArtista($id);
+
+                $data = $Artistas::getAllArtistas();
+                $this->view('artista/index', ['artistas' => $data, 'info' => $info, 'type' => 'DELETE']);
+            }
+        } else {
+            $this->pageNotFound();
+        }
+    }
+
+    public function deleteWithAlbums($id = null)
+    {
+        if (is_numeric($id)) {
+            $Albums = $this->model('Album');
+
+            // Excluir todos os álbuns associados ao artista
+            $Albums::deleteAlbumsByArtista($id);
+
             $Artistas = $this->model('Artista');
-            $info = $Artistas::deleteArtista($id);
+            $info = $Artistas::deleteArtista($id); // Excluir o artista
 
             $data = $Artistas::getAllArtistas();
             $this->view('artista/index', ['artistas' => $data, 'info' => $info, 'type' => 'DELETE']);

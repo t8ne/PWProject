@@ -8,9 +8,11 @@ class Produtor
 {
     public static function getAllProdutores()
     {
-        $conn = new Db();
-        return $conn->execQuery('SELECT id_produtor, nome, nacionalidade FROM produtor');
+        $db = new Db();
+        $sql = "SELECT * FROM Produtor";
+        return $db->execQuery($sql);
     }
+
 
     public static function findProdutorById(int $id)
     {
@@ -51,4 +53,12 @@ class Produtor
         }
         return null;
     }
+
+    public static function unsetProdutorInMusicas($produtorId)
+    {
+        $db = new Db();
+        $sql = "UPDATE Musica SET id_produtor = NULL WHERE id_produtor = ?";
+        return $db->execQuery($sql, [$produtorId]);
+    }
+
 }

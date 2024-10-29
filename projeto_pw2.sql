@@ -34,7 +34,15 @@ CREATE TABLE musica (
   nome VARCHAR(255) NOT NULL,
   tempo double NOT NULL,
   id_album INT,
-  id_produtor INT,
+  id_produtor INT NULL,
   FOREIGN KEY (id_album) REFERENCES album(id_album),
   FOREIGN KEY (id_produtor) REFERENCES produtor(id_produtor)
 );
+
+-- CREATE TABLE musica_produtor (
+--     id_musica INT,
+--     id_produtor INT,
+--     PRIMARY KEY (id_musica, id_produtor),
+--     FOREIGN KEY (id_musica) REFERENCES Musica(id_musica),
+--     FOREIGN KEY (id_produtor) REFERENCES Produtor(id_produtor)
+-- );

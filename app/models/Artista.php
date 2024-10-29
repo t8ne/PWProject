@@ -47,4 +47,5 @@ class Artista
         $sql = "DELETE FROM artista WHERE id_artista = ?";
         return $db->execQuery($sql, [$id]);
     }
+
 }

@@ -14,13 +14,28 @@ class Genero extends Controller
     public function get($id = null)
     {
         if (is_numeric($id)) {
+            // Carregar modelo Genero
             $Generos = $this->model('Genero');
-            $data = $Generos::findGeneroById($id);
-            $this->view('genero/get', ['genero' => $data]);
+            $data = $Generos::findGeneroById($id); // Busca o gênero
+
+            // Carregar modelo Album
+            $Albums = $this->model('Album');
+            $albums = $Albums::getAlbumsByGenero($id); // Busca álbuns associados ao gênero
+
+            if ($data) {
+                // Enviar dados do gênero e dos álbuns para a view
+                $this->view('genero/get', [
+                    'genero' => $data,
+                    'albums' => $albums // Inclui álbuns associados
+                ]);
+            } else {
+                $this->pageNotFound(); // Gênero não encontrado
+            }
         } else {
-            $this->pageNotFound();
+            $this->pageNotFound(); // ID não numérico
         }
     }
+
 
     public function update($id = null)
     {
@@ -63,8 +78,36 @@ class Genero extends Controller
     public function delete($id = null)
     {
         if (is_numeric($id)) {
+            $Albums = $this->model('Album');
+            $albumCount = $Albums::countAlbumsByGenero($id); // Contar álbuns associados
+
+            if ($albumCount > 0) {
+                // Se houver álbuns associados, pedir confirmação ao usuário
+                $info = "Este género possui $albumCount álbuns associados. Deseja excluir todos os álbuns associados junto com o género?";
+                $this->view('genero/confirmDelete', ['genero_id' => $id, 'info' => $info]);
+            } else {
+                // Se não houver álbuns, excluir o género diretamente
+                $Generos = $this->model('Genero');
+                $info = $Generos::deleteGenero($id);
+
+                $data = $Generos::getAllGeneros();
+                $this->view('genero/index', ['generos' => $data, 'info' => $info, 'type' => 'DELETE']);
+            }
+        } else {
+            $this->pageNotFound();
+        }
+    }
+
+    public function deleteWithAlbums($id = null)
+    {
+        if (is_numeric($id)) {
+            $Albums = $this->model('Album');
+
+            // Excluir todos os álbuns associados ao género
+            $Albums::deleteAlbumsByGenero($id);
+
             $Generos = $this->model('Genero');
-            $info = $Generos::deleteGenero($id);
+            $info = $Generos::deleteGenero($id); // Excluir o género
 
             $data = $Generos::getAllGeneros();
             $this->view('genero/index', ['generos' => $data, 'info' => $info, 'type' => 'DELETE']);

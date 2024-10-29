@@ -11,7 +11,19 @@ if (empty($data['album'])) {
     <div>
         <strong>Data:</strong> <?php echo htmlspecialchars($data['album'][0]['data']); ?>
     </div>
-    <?php
+    <h3>Músicas:</h3>
+    <?php if (!empty($data['musicas']) && is_array($data['musicas'])): ?>
+        <ul>
+            <?php foreach ($data['musicas'] as $musica): ?>
+                <li>
+                    <?php echo htmlspecialchars($musica['nome']); ?>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    <?php else: ?>
+        <p>Não existem músicas associadas a este álbum.</p>
+    <?php endif; ?>
+<?php
 }
 ?>
 <a href="<?php echo $url_alias; ?>/album">Voltar</a>

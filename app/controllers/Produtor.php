@@ -15,13 +15,24 @@ class Produtor extends Controller
     public function get($id = null)
     {
         if (is_numeric($id)) {
+            // Carregar modelo Produtor e buscar dados do produtor pelo ID
             $Produtores = $this->model('Produtor');
             $data = $Produtores::findProdutorById($id);
-            $this->view('produtor/get', ['produtor' => $data]);
+
+            // Carregar modelo Musica e buscar músicas associadas ao produtor pelo ID
+            $Musicas = $this->model('Musica');
+            $musicas = $Musicas::getMusicasByProdutor($id);
+
+            // Enviar dados do produtor e das músicas para a view
+            $this->view('produtor/get', [
+                'produtor' => $data,
+                'musicas' => $musicas // Adiciona as músicas associadas ao produtor
+            ]);
         } else {
             $this->pageNotFound();
         }
     }
+
 
     public function create()
     {
@@ -58,6 +69,11 @@ class Produtor extends Controller
     {
         if (is_numeric($id)) {
             $Produtores = $this->model('Produtor');
+
+            // Atualizar músicas para definir id_produtor como NULL
+            $Produtores::unsetProdutorInMusicas($id);
+
+            // Agora deletar o produtor
             $info = $Produtores::deleteProdutor($id);
 
             $data = $Produtores::getAllProdutores();
@@ -66,4 +82,5 @@ class Produtor extends Controller
             $this->pageNotFound();
         }
     }
+
 }

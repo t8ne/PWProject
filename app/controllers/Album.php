@@ -14,13 +14,24 @@ class Album extends Controller
     public function get($id = null)
     {
         if (is_numeric($id)) {
+            // Carregar modelo Album e buscar dados do álbum pelo ID
             $Albums = $this->model('Album');
             $data = $Albums::findAlbumById($id);
-            $this->view('album/get', ['album' => $data]);
+
+            // Carregar modelo Musica e buscar músicas associadas ao álbum pelo ID
+            $Musicas = $this->model('Musica');
+            $musicas = $Musicas::getMusicasByAlbum($id);
+
+            // Enviar dados do álbum e das músicas para a view
+            $this->view('album/get', [
+                'album' => $data,
+                'musicas' => $musicas // Adiciona as músicas associadas
+            ]);
         } else {
             $this->pageNotFound();
         }
     }
+
 
     public function create()
     {
@@ -49,15 +60,26 @@ class Album extends Controller
     public function delete($id = null)
     {
         if (is_numeric($id)) {
-            $Albums = $this->model('Album');
-            $info = $Albums::deleteAlbum($id);
+            $Musicas = $this->model('Musica');
+            $musicaCount = $Musicas::countMusicasByAlbum($id);
 
-            $data = $Albums::getAllAlbums();
-            $this->view('album/index', ['albums' => $data, 'info' => $info, 'type' => 'DELETE']);
+            if ($musicaCount > 0) {
+                // Se houver músicas associadas, pedir confirmação ao usuário
+                $info = "Este álbum possui $musicaCount músicas associadas. Deseja excluir todas as músicas associadas junto com o álbum?";
+                $this->view('album/confirmDelete', ['album_id' => $id, 'info' => $info]);
+            } else {
+                // Se não houver músicas, excluir o álbum diretamente
+                $Albums = $this->model('Album');
+                $info = $Albums::deleteAlbum($id);
+
+                $data = $Albums::getAllAlbums();
+                $this->view('album/index', ['albums' => $data, 'info' => $info, 'type' => 'DELETE']);
+            }
         } else {
             $this->pageNotFound();
         }
     }
+
 
     public function update($id = null)
     {
@@ -86,4 +108,21 @@ class Album extends Controller
             $this->view('album/update', ['album' => $data, 'artistas' => $artistas, 'generos' => $generos]);
         }
     }
+
+    public function deleteWithMusicas($id = null)
+    {
+        if (is_numeric($id)) {
+            $Musicas = $this->model('Musica');
+            $Musicas::deleteMusicasByAlbum($id); // Exclui todas as músicas associadas
+
+            $Albums = $this->model('Album');
+            $info = $Albums::deleteAlbum($id); // Exclui o álbum
+
+            $data = $Albums::getAllAlbums();
+            $this->view('album/index', ['albums' => $data, 'info' => $info, 'type' => 'DELETE']);
+        } else {
+            $this->pageNotFound();
+        }
+    }
+
 }

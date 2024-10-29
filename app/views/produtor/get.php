@@ -23,7 +23,20 @@ if (!isset($data['produtor']) || !is_array($data['produtor'])) {
         echo "Nacionalidade: " . htmlspecialchars($produtor['nacionalidade'] ?? '');
         ?>
     </div>
-    <?php
+    <h3>Músicas:</h3>
+    <?php if (!empty($data['musicas']) && is_array($data['musicas'])): ?>
+        <ul>
+            <?php foreach ($data['musicas'] as $musica): ?>
+                <li>
+                    <?php echo htmlspecialchars($musica['nome']); ?>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    <?php else: ?>
+        <p>Não existem músicas associadas a este produtor.</p>
+    <?php endif; ?>
+<?php
+
 }
 ?>
 <a href="<?php echo htmlspecialchars($url_alias ?? ''); ?>/produtor">Voltar</a>
