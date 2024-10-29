@@ -16,7 +16,11 @@ class Musica extends Controller
         if (is_numeric($id)) {
             $Musicas = $this->model('Musica');
             $data = $Musicas::findMusicaById($id);
-            $this->view('musica/get', ['musica' => $data]);
+            if ($data) {
+                $this->view('musica/get', ['musica' => $data]);
+            } else {
+                $this->pageNotFound();
+            }
         } else {
             $this->pageNotFound();
         }
@@ -83,7 +87,11 @@ class Musica extends Controller
             }
             $albums = $Albums::getAllAlbums();
             $produtores = $Produtores::getAllProdutores();
-            $this->view('musica/update', ['musica' => $data, 'albums' => $albums, 'produtores' => $produtores]);
+            $this->view('musica/update', [
+                'musica' => $data,
+                'albums' => $albums,
+                'produtores' => $produtores,
+            ]);
         }
     }
 }

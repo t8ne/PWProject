@@ -1,24 +1,13 @@
-<?php
-// Verifica se `artista` está definido e tem dados
-if (isset($data['artista']) && is_array($data['artista']) && !empty($data['artista'])) {
-    $artista = $data['artista'];
-    ?>
-    <div>
-        <?php
-        echo "Nome: " . htmlspecialchars($artista['nome'] ?? '');
-        ?>
-    </div>
+<h2><?php echo htmlspecialchars($data['artista']['nome']); ?></h2>
+<p>Nacionalidade: <?php echo htmlspecialchars($data['artista']['nacionalidade']); ?></p>
 
-    <div>
-        <?php
-        echo "Nacionalidade: " . htmlspecialchars($artista['nacionalidade'] ?? 'N/A');
-        ?>
-    </div>
-    <?php
-} else {
-    ?>
-    <h1>O artista não existe na nossa base de dados...</h1>
-    <?php
-}
-?>
-<a href="<?php echo htmlspecialchars($url_alias ?? ''); ?>/artista">Voltar</a>
+<h3>Álbuns:</h3>
+<ul>
+    <?php foreach ($data['albums'] as $album): ?>
+        <li>
+            <a href="<?php echo $url_alias; ?>/album/get/<?php echo $album['id_album']; ?>">
+                <?php echo htmlspecialchars($album['nome']); ?>
+            </a>
+        </li>
+    <?php endforeach; ?>
+</ul>

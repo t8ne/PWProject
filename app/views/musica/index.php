@@ -5,17 +5,17 @@
 // debug
 //print_r($data);
 
-if (isset($data['info']) && isset($data['type'])) {
+if (isset($data['musica']) && isset($data['type'])) {
     $type = $data['type'];
     switch ($type) {
         case 'INSERT':
-            echo '<h3>Música - ' . $data['info']['nome'] . ' - inserida com sucesso.</h3>';
+            echo '<h3>Música - ' . $data['musica']['nome'] . ' - inserida com sucesso.</h3>';
             break;
         case 'UPDATE':
-            echo '<h3>A informação da música - ' . $data['info']['nome'] . ' - foi atualizada.</h3>';
+            echo '<h3>A informação da música - ' . $data['musica']['nome'] . ' - foi atualizada.</h3>';
             break;
         case 'DELETE':
-            echo '<h3>A música - ' . $data['info']['nome'] . ' - foi eliminada.</h3>';
+            echo '<h3>A música - ' . $data['musica']['nome'] . ' - foi eliminada.</h3>';
             break;
     }
 }

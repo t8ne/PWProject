@@ -8,6 +8,9 @@
     <label for="nome">Nome:</label>
     <input type="text" id="nome" name="nome" value="<?php echo $data['musica'][0]['nome']; ?>" required><br>
 
+    <label for="tempo">Tempo:</label>
+    <input type="text" id="tempo" name="tempo" value="<?php echo $data['musica'][0]['tempo']; ?>" required><br>
+
     <label for="id_album">Álbum:</label>
     <select id="id_album" name="id_album" required>
         <?php foreach ($data['albums'] as $album) { ?>
@@ -19,7 +22,7 @@
 
     <label for="id_produtor">Produtor:</label>
     <select id="id_produtor" name="id_produtor" required>
-        <?php foreach ($data['producers'] as $producer) { ?>
+        <?php foreach ($data['produtores'] as $producer) { ?>
             <option value="<?php echo $producer['id_produtor']; ?>" <?php echo ($data['musica'][0]['id_produtor'] == $producer['id_produtor']) ? 'selected' : ''; ?>>
                 <?php echo $producer['nome']; ?>
             </option>

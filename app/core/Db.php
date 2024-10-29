@@ -19,7 +19,7 @@ class Db
     $this->DBServer = 'localhost';
     $this->DBUser = 'root';
     $this->DBPass = '';
-    $this->DBName = 'projeto_pw';
+    $this->DBName = 'projeto_pw2';
     $this->conn = new mysqli($this->DBServer, $this->DBUser, $this->DBPass, $this->DBName);
     $this->conn->set_charset("utf8");
   }

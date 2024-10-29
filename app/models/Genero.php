@@ -9,13 +9,13 @@ class Genero
     public static function getAllGeneros()
     {
         $conn = new Db();
-        return $conn->execQuery('SELECT id_genero, nome FROM Genero');
+        return $conn->execQuery('SELECT id_genero, nome FROM genero');
     }
 
     public static function findGeneroById($id)
     {
         $db = new Db();
-        $sql = "SELECT id_genero, nome FROM Genero WHERE id_genero = ?";
+        $sql = "SELECT id_genero, nome FROM genero WHERE id_genero = ?";
         return $db->execQuery($sql, [$id]);
     }
 
@@ -30,14 +30,14 @@ class Genero
     public static function addGenero($data)
     {
         $db = new Db();
-        $sql = "INSERT INTO Genero (nome) VALUES (?)";
+        $sql = "INSERT INTO genero (nome) VALUES (?)";
         return $db->execQuery($sql, [$data['nome']]);
     }
 
     public static function deleteGenero($id)
     {
         $db = new Db();
-        $sql = "DELETE FROM Genero WHERE id_genero = ?";
+        $sql = "DELETE FROM genero WHERE id_genero = ?";
         return $db->execQuery($sql, [$id]);
     }
 }

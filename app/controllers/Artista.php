@@ -34,12 +34,10 @@ class Artista extends Controller
     {
         if (is_numeric($id)) {
             $Artistas = $this->model('Artista');
-            $data = $Artistas::findArtistaById($id);
-            if ($data) {
-                $this->view('artista/get', ['artista' => $data]);
-            } else {
-                $this->pageNotFound();
-            }
+            $Albums = $this->model('Album');
+            $artista = $Artistas::findArtistaById($id);
+            $albums = $Albums::getAlbumsByArtista($id);
+            $this->view('artista/get', ['artista' => $artista, 'albums' => $albums]);
         } else {
             $this->pageNotFound();
         }

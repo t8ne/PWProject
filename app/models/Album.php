@@ -53,4 +53,25 @@ class Album
         return $db->execQuery($sql, $params);
     }
 
+    public static function getAlbumsByArtista($artistaId)
+    {
+        $db = new Db();
+        $sql = "SELECT * FROM Album WHERE id_artista = ?";
+        return $db->execQuery($sql, [$artistaId]);
+    }
+
+    public static function getAlbumsByGenero($generoId)
+    {
+        $db = new Db();
+        $sql = "SELECT * FROM Album WHERE id_genero = ?";
+        return $db->execQuery($sql, [$generoId]);
+    }
+
+    public static function getMusicasByAlbum($albumId)
+    {
+        $db = new Db();
+        $sql = "SELECT m.*, p.nome as produtor_nome FROM Musica m LEFT JOIN Produtor p ON m.id_produtor = p.id_produtor WHERE m.id_album = ?";
+        return $db->execQuery($sql, [$albumId]);
+    }
+
 }

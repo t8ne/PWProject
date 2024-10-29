@@ -32,13 +32,6 @@ class Musica
         return $db->execQuery($sql, $params);
     }
 
-    public static function deleteMusica($id)
-    {
-        $db = new Db();
-        $sql = "DELETE FROM Musica WHERE id_musica = ?";
-        return $db->execQuery($sql, [$id]);
-    }
-
     public static function updateMusica($id, $musicaData)
     {
         $db = new Db();
@@ -52,4 +45,13 @@ class Musica
         ];
         return $db->execQuery($sql, $params);
     }
+
+    public static function deleteMusica($id)
+    {
+        $db = new Db();
+        $sql = "DELETE FROM Musica WHERE id_musica = ?";
+        return $db->execQuery($sql, [$id]);
+    }
+
+
 }

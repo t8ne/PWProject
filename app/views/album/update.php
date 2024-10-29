@@ -18,6 +18,16 @@
         <?php endforeach; ?>
     </select>
 
+    <label for="id_genero">Género:</label>
+    <select id="id_genero" name="id_genero" required>
+        <?php foreach ($data['generos'] as $genero): ?>
+            <option value="<?php echo $genero['id_genero']; ?>" <?php if ($genero['id_genero'] == $data['album'][0]['id_genero'])
+                   echo 'selected'; ?>>
+                <?php echo htmlspecialchars($artista['nome']); ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+
     <button type="submit">Atualizar Álbum</button>
 </form>
 <a href="<?php echo $url_alias; ?>/album">Voltar</a>
