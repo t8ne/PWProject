@@ -1,17 +1,22 @@
 <?php
-// debug
-// print_r($data);
-?>
+// Ensure $data['produtor'] exists and is an array
+$produtor = isset($data['produtor']) && is_array($data['produtor']) ? $data['produtor'] : null;
 
-<h2>Editar Produtor</h2>
-<form action="<?php echo $url_alias; ?>/produtor/update/<?php echo $data['producer'][0]['id_produtor']; ?>" method="POST">
-    <label for="nome">Nome:</label>
-    <input type="text" id="nome" name="nome" value="<?php echo $data['producer'][0]['nome']; ?>" required><br>
+if ($produtor): ?>
+    <h2>Editar Produtor</h2>
+    <form action="<?php echo $url_alias; ?>/produtor/update/<?php echo htmlspecialchars($produtor['id_produtor'] ?? ''); ?>"
+        method="POST">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" value="<?php echo htmlspecialchars($produtor['nome'] ?? ''); ?>" required>
 
-    <label for="nacionalidade">Nacionalidade:</label>
-    <input type="text" id="nacionalidade" name="nacionalidade"
-        value="<?php echo $data['producer'][0]['nacionalidade']; ?>" required><br>
+        <label for="nacionalidade">Nacionalidade:</label>
+        <input type="text" id="nacionalidade" name="nacionalidade"
+            value="<?php echo htmlspecialchars($produtor['nacionalidade'] ?? ''); ?>" required>
 
-    <button type="submit">Atualizar Produtor</button>
-</form>
-<a href="<?php echo $url_alias; ?>/produtor">Voltar</a>
+        <input type="submit" value="Atualizar Produtor">
+    </form>
+    <a href="<?php echo $url_alias; ?>/produtor">Voltar</a>
+<?php else: ?>
+    <p>Produtor não encontrado.</p>
+    <a href="<?php echo $url_alias; ?>/produtor">Voltar para a lista</a>
+<?php endif; ?>

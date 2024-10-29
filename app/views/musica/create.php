@@ -11,6 +11,13 @@
         <?php } ?>
     </select><br>
 
+    <label for="id_genero">Género:</label>
+    <select id="id_genero" name="id_genero" required>
+        <?php foreach ($data['generos'] as $genero) { ?>
+            <option value="<?php echo $genero['id_genero']; ?>"><?php echo $genero['nome']; ?></option>
+        <?php } ?>
+    </select><br>
+
     <label for="id_produtor">Produtor:</label>
     <select id="id_produtor" name="id_produtor" required>
         <?php foreach ($data['producers'] as $producer) { ?>

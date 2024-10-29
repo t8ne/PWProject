@@ -9,39 +9,47 @@ class Musica
     public static function getAllMusicas()
     {
         $conn = new Db();
-        return $conn->execQuery('SELECT id_musica, nome, tempo, id_album FROM Musica');
+        return $conn->execQuery('SELECT id_musica, nome, tempo, id_album, id_produtor FROM Musica');
     }
 
-    public static function findMusicaById(int $id)
+    public static function findMusicaById($id)
     {
-        $conn = new Db();
-        return $conn->execQuery('SELECT id_musica, nome, tempo, id_album FROM Musica WHERE id_musica = ?', array('i', array($id)));
+        $db = new Db();
+        $sql = "SELECT id_musica, nome, tempo, id_album, id_produtor FROM Musica WHERE id_musica = ?";
+        return $db->execQuery($sql, [$id]);
     }
 
-    public static function addMusica($data): bool
+    public static function addMusica($musicaData)
     {
-        $conn = new Db();
-        return $conn->execQuery('INSERT INTO Musica (nome, tempo, id_album) VALUES (?, ?, ?)', array(
-            'ssi',
-            array($data['nome'], $data['tempo'], $data['id_album'])
-        )) ? true : false;
+        $db = new Db();
+        $sql = "INSERT INTO Musica (nome, tempo, id_album, id_produtor) VALUES (?, ?, ?, ?)";
+        $params = [
+            $musicaData['nome'],
+            $musicaData['tempo'],
+            $musicaData['id_album'],
+            $musicaData['id_produtor']
+        ];
+        return $db->execQuery($sql, $params);
     }
 
-    public static function updateMusica($id, $data): bool
+    public static function deleteMusica($id)
     {
-        $conn = new Db();
-        return $conn->execQuery('UPDATE Musica SET nome = ?, tempo = ?, id_album = ? WHERE id_musica = ?', array(
-            'ssii',
-            array($data['nome'], $data['tempo'], $data['id_album'], $id)
-        )) ? true : false;
+        $db = new Db();
+        $sql = "DELETE FROM Musica WHERE id_musica = ?";
+        return $db->execQuery($sql, [$id]);
     }
 
-    public static function deleteMusica($id): bool
+    public static function updateMusica($id, $musicaData)
     {
-        $conn = new Db();
-        return $conn->execQuery('DELETE FROM Musica WHERE id_musica = ?', array(
-            'i',
-            array($id)
-        )) ? true : false;
+        $db = new Db();
+        $sql = "UPDATE Musica SET nome = ?, tempo = ?, id_album = ?, id_produtor = ? WHERE id_musica = ?";
+        $params = [
+            $musicaData['nome'],
+            $musicaData['tempo'],
+            $musicaData['id_album'],
+            $musicaData['id_produtor'],
+            $id
+        ];
+        return $db->execQuery($sql, $params);
     }
 }

@@ -27,6 +27,12 @@
 
         <h2>Álbuns</h2>
         <a href="<?php echo $url_alias; ?>/album">Lista de Álbuns</a><br>
+
+        <h2>Músicas</h2>
+        <a href="<?php echo $url_alias; ?>/musica">Lista de Músicas</a><br>
+
+        <h2>Produtores</h2>
+        <a href="<?php echo $url_alias; ?>/produtor">Lista de Produtores</a><br>
       </div>
     </div>
   </div>

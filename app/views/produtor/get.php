@@ -4,25 +4,26 @@
 ?>
 
 <?php
-if (count($data['producers']) == 0) {
+if (!isset($data['produtor']) || !is_array($data['produtor'])) {
     ?>
     <h1>O produtor não existe na nossa base de dados...</h1>
-<?php
+    <?php
 } else {
+    $produtor = $data['produtor'];
     ?>
 
     <div>
         <?php
-        echo "Nome: " . $data['producers'][0]['nome'];
+        echo "Nome: " . htmlspecialchars($produtor['nome'] ?? '');
         ?>
     </div>
 
     <div>
         <?php
-        echo "Nacionalidade: " . $data['producers'][0]['nacionalidade'];
+        echo "Nacionalidade: " . htmlspecialchars($produtor['nacionalidade'] ?? '');
         ?>
     </div>
-<?php
+    <?php
 }
 ?>
-<a href="<?php echo $url_alias; ?>/produtor">Voltar</a>
+<a href="<?php echo htmlspecialchars($url_alias ?? ''); ?>/produtor">Voltar</a>
