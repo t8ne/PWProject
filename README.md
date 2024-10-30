@@ -16,7 +16,7 @@ Este projeto é uma aplicação web desenvolvida em PHP que permite a gestão de
 
 ## Configuração do Alias no Apache
 
-Para configurar um alias no Apache e acessar o projeto diretamente através de `http://localhost/projetopw`, siga estas instruções:
+Para configurar um alias no Apache e acessar o projeto diretamente através de `http://localhost/projetopw/`, siga estas instruções:
 
 1. **Abra o arquivo `httpd.conf`**:
    
@@ -45,5 +45,5 @@ Para configurar um alias no Apache e acessar o projeto diretamente através de `
 
 3. **Reinicie o Apache** através do painel de controle do XAMPP para aplicar as mudanças.
 
-Agora já consegue acessar o projeto através do endereço: `http://localhost/projetopw`
+Agora já consegue acessar o projeto através do endereço: `http://localhost/projetopw/`
 
