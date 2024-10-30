@@ -14,4 +14,4 @@ RewriteRule . index.php [L]
 # (pedidos a tudo que "não existe")
 #
 # A flag [L] termina o processamento das condições (RewriteCond) logo que uma seja
-# verificada (verdadeira)
+# verificada. (verdadeira)

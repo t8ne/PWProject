@@ -39,6 +39,8 @@ CREATE TABLE musica (
   FOREIGN KEY (id_produtor) REFERENCES produtor(id_produtor)
 );
 
+--Extra Table se quiser ter Relações Muitos para Muitos entre Musicas e Produtores
+
 -- CREATE TABLE musica_produtor (
 --     id_musica INT,
 --     id_produtor INT,
