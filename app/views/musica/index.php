@@ -3,11 +3,13 @@
 <div class="container">
     <h2 class="mb-4">Lista de Músicas</h2>
 
-    <div class="mb-3">
-        <a href="<?php echo $url_alias; ?>/musica/create" class="btn btn-primary">
-            <i class="fas fa-plus-circle me-2"></i>Nova Música
-        </a>
-    </div>
+    <?php if ($isAdmin): ?>
+        <div class="mb-3">
+            <a href="<?php echo $url_alias; ?>/musica/create" class="btn btn-primary">
+                <i class="fas fa-plus-circle me-2"></i>Nova Música
+            </a>
+        </div>
+    <?php endif; ?>
 
     <?php
     if (isset($data['musica']) && isset($data['type'])) {

@@ -1,3 +1,34 @@
+<?php
+session_start();
+
+// Verificar se o usuário está fazendo logout
+if (isset($_GET['logout'])) {
+    unset($_SESSION['user']);
+    unset($_SESSION['isAdmin']);
+    header("Location: " . $url_alias . "/");
+    exit();
+}
+
+// Processar o login
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    if ($username === 'admin' && $password === 'admin') {
+        $_SESSION['user'] = $username;
+        $_SESSION['isAdmin'] = true;
+    } else {
+        $_SESSION['user'] = $username;
+        $_SESSION['isAdmin'] = false;
+    }
+
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit();
+}
+
+$isAdmin = $_SESSION['isAdmin'] ?? false;
+$loggedInUser = $_SESSION['user'] ?? null;
+?>
 <!doctype html>
 <html lang="en">
 
@@ -64,6 +95,17 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo $url_alias; ?>/produtor">Produtores</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">|</a>
+                    </li>
+                    <li class="nav-item">
+                        <?php if ($loggedInUser): ?>
+                            <a class="nav-link" href="<?php echo $url_alias; ?>/?logout=1">Logout
+                                (<?php echo htmlspecialchars($loggedInUser); ?>)</a>
+                        <?php else: ?>
+                            <a class="nav-link" href="<?php echo $url_alias; ?>/login">Login</a>
+                        <?php endif; ?>
                     </li>
                 </ul>
             </div>
