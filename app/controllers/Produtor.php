@@ -39,7 +39,10 @@ class Produtor extends Controller
         $Produtores = $this->model('Produtor');
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $newProdutorData = ['nome' => $_POST['nome']];
+            $newProdutorData = [
+                'nome' => $_POST['nome'],
+                'nacionalidade' => $_POST['nacionalidade']
+            ];
             $info = $Produtores::addProdutor($newProdutorData);
 
             $data = $Produtores::getAllProdutores();
@@ -49,12 +52,16 @@ class Produtor extends Controller
         }
     }
 
+
     public function update($id = null)
     {
         $Produtores = $this->model('Produtor');
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $updatedProdutorData = ['nome' => $_POST['nome']];
+            $updatedProdutorData = [
+                'nome' => $_POST['nome'],
+                'nacionalidade' => $_POST['nacionalidade']
+            ];
             $info = $Produtores::updateProdutor($id, $updatedProdutorData);
 
             $data = $Produtores::getAllProdutores();

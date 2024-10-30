@@ -1,32 +1,43 @@
-<?php
-if (empty($data['musica'])) {
-    ?>
-    <h1>A música não existe na nossa base de dados...</h1>
-    <?php
-} else {
-    ?>
-    <div>
-        <strong>Nome:</strong> <?php echo htmlspecialchars($data['musica'][0]['nome']); ?>
+<?php include 'app/views/partials/header.php'; ?>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card mt-5">
+                <div class="card-body">
+                    <?php if (empty($data['musica'])): ?>
+                        <h1 class="text-center">A música não existe na nossa base de dados...</h1>
+                    <?php else: ?>
+                        <h2 class="card-title text-center mb-4"><?php echo htmlspecialchars($data['musica'][0]['nome']); ?>
+                        </h2>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p><strong>Tempo:</strong> <?php echo htmlspecialchars($data['musica'][0]['tempo']); ?></p>
+                                <p><strong>Álbum:</strong> <?php echo htmlspecialchars($data['musica'][0]['id_album']); ?>
+                                </p>
+                            </div>
+                            <div class="col-md-6">
+                                <p><strong>Produtor:</strong>
+                                    <?php
+                                    if (is_null($data['musica'][0]['id_produtor'])) {
+                                        echo "Produtor eliminado.";
+                                    } else {
+                                        echo htmlspecialchars($data['musica'][0]['id_produtor']);
+                                    }
+                                    ?>
+                                </p>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+            <div class="text-center mt-3">
+                <a href="<?php echo $url_alias; ?>/musica" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left me-2"></i>Voltar para Lista de Músicas
+                </a>
+            </div>
+        </div>
     </div>
-    <div>
-        <strong>Tempo:</strong> <?php echo htmlspecialchars($data['musica'][0]['tempo']); ?>
-    </div>
-    <div>
-        <strong>Álbum:</strong> <?php echo htmlspecialchars($data['musica'][0]['id_album']); ?>
-    </div>
-    <div>
-        <strong>Produtor:</strong>
-        <?php
-        // Verifica se id_produtor é NULL
-        if (is_null($data['musica'][0]['id_produtor'])) {
-            echo "Produtor eliminado.";
-        } else {
-            // Se não for NULL, exibe o ID do produtor normalmente
-            echo htmlspecialchars($data['musica'][0]['id_produtor']);
-        }
-        ?>
-    </div>
-    <?php
-}
-?>
-<a href="<?php echo $url_alias; ?>/musica">Voltar</a>
+</div>
+
+<?php include 'app/views/partials/footer.php'; ?>

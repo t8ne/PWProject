@@ -1,26 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php include 'app/views/partials/header.php'; ?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Artista</title>
-</head>
-
-<body>
-    <h1>Create Artista</h1>
-    <form action="<?php echo $url_alias; ?>/artista/create" method="POST">
-        <div>
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" required>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card mt-5">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">Criar Novo Artista</h2>
+                    <form action="<?php echo $url_alias; ?>/artista/create" method="POST">
+                        <div class="mb-3">
+                            <label for="nome" class="form-label">Nome:</label>
+                            <input type="text" class="form-control" id="nome" name="nome" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="nacionalidade" class="form-label">Nacionalidade:</label>
+                            <input type="text" class="form-control" id="nacionalidade" name="nacionalidade" required>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-plus-circle me-2"></i>Criar Artista
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="text-center mt-3">
+                <a href="<?php echo $url_alias; ?>/artista" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left me-2"></i>Voltar para Lista de Artistas
+                </a>
+            </div>
         </div>
-        <div>
-            <label for="nacionalidade">Nacionalidade:</label>
-            <input type="text" id="nacionalidade" name="nacionalidade" required>
-        </div>
-        <button type="submit">Create</button>
-    </form>
-    <a href="<?php echo $url_alias; ?>/artista">Back to Artista List</a>
-</body>
+    </div>
+</div>
 
-</html>
+<?php include 'app/views/partials/footer.php'; ?>
