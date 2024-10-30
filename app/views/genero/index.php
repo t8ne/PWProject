@@ -52,15 +52,17 @@
                                     class="btn btn-primary">
                                     <i class="fas fa-eye me-1"></i>Ver
                                 </a>
-                                <a href="<?php echo $url_alias; ?>/genero/update/<?php echo $genero['id_genero']; ?>"
-                                    class="btn btn-warning">
-                                    <i class="fas fa-edit me-1"></i>Editar
-                                </a>
-                                <a href="<?php echo $url_alias; ?>/genero/delete/<?php echo $genero['id_genero']; ?>"
-                                    class="btn btn-danger"
-                                    onclick="return confirm('Tem certeza que deseja eliminar este género?');">
-                                    <i class="fas fa-trash-alt me-1"></i>Eliminar
-                                </a>
+                                <?php if ($isAdmin): ?>
+                                    <a href="<?php echo $url_alias; ?>/genero/update/<?php echo $genero['id_genero']; ?>"
+                                        class="btn btn-warning">
+                                        <i class="fas fa-edit me-1"></i>Editar
+                                    </a>
+                                    <a href="<?php echo $url_alias; ?>/genero/delete/<?php echo $genero['id_genero']; ?>"
+                                        class="btn btn-danger"
+                                        onclick="return confirm('Tem certeza que deseja eliminar este género?');">
+                                        <i class="fas fa-trash-alt me-1"></i>Eliminar
+                                    </a>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>

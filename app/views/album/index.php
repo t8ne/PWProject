@@ -11,6 +11,34 @@
         </div>
     <?php endif; ?>
 
+    <?php
+    if (isset($data['info']) && is_array($data['info']) && isset($data['type'])) {
+        $type = $data['type'];
+        $alertClass = '';
+        $icon = '';
+        switch ($type) {
+            case 'INSERT':
+                $alertClass = 'alert-success';
+                $icon = 'fa-check-circle';
+                $message = 'Género - ' . htmlspecialchars($data['info']['nome']) . ' - inserido com sucesso.';
+                break;
+            case 'UPDATE':
+                $alertClass = 'alert-info';
+                $icon = 'fa-edit';
+                $message = 'A informação do género - ' . htmlspecialchars($data['info']['nome']) . ' - foi atualizada.';
+                break;
+            case 'DELETE':
+                $alertClass = 'alert-warning';
+                $icon = 'fa-trash-alt';
+                $message = 'O género - ' . htmlspecialchars($data['info']['nome']) . ' - foi eliminado.';
+                break;
+        }
+        echo "<div class='alert $alertClass' role='alert'>";
+        echo "<i class='fas $icon me-2'></i>$message";
+        echo "</div>";
+    }
+    ?>
+
     <?php if (isset($data['albums']) && is_array($data['albums']) && !empty($data['albums'])): ?>
         <div class="row">
             <?php foreach ($data['albums'] as $album): ?>
@@ -23,15 +51,17 @@
                                     class="btn btn-primary">
                                     <i class="fas fa-eye me-1"></i>Ver
                                 </a>
-                                <a href="<?php echo $url_alias; ?>/album/update/<?php echo $album['id_album']; ?>"
-                                    class="btn btn-warning">
-                                    <i class="fas fa-edit me-1"></i>Editar
-                                </a>
-                                <a href="<?php echo $url_alias; ?>/album/delete/<?php echo $album['id_album']; ?>"
-                                    class="btn btn-danger"
-                                    onclick="return confirm('Tem certeza que deseja eliminar este álbum?');">
-                                    <i class="fas fa-trash-alt me-1"></i>Eliminar
-                                </a>
+                                <?php if ($isAdmin): ?>
+                                    <a href="<?php echo $url_alias; ?>/album/update/<?php echo $album['id_album']; ?>"
+                                        class="btn btn-warning">
+                                        <i class="fas fa-edit me-1"></i>Editar
+                                    </a>
+                                    <a href="<?php echo $url_alias; ?>/album/delete/<?php echo $album['id_album']; ?>"
+                                        class="btn btn-danger"
+                                        onclick="return confirm('Tem certeza que deseja eliminar este álbum?');">
+                                        <i class="fas fa-trash-alt me-1"></i>Eliminar
+                                    </a>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
