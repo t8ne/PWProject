@@ -30,8 +30,8 @@ class Controller
    */
   public function view(string $view, $data = [])
   {
-    $url_alias = '/projetopw';
-    $url_alias2 = '/projetopw/';
+    $url_alias = '/PWProject';
+    $url_alias2 = '/PWProject/';
     require 'app/views/' . $view . '.php';
   }
 
