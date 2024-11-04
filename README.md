@@ -43,7 +43,7 @@ Para configurar um alias no Apache e acessar o projeto diretamente através de `
     </Directory>
     ```
 
-3. **Reinicie o Apache** através do painel de controle do XAMPP para aplicar as mudanças.
+3. **Reinicie o Apache** através do painel de controle do XAMPP, clicando no botão Stop e de seguida Start para aplicar as mudanças.
 
 Agora já consegue acessar o projeto através do endereço: `http://localhost/projetopw/`
 
