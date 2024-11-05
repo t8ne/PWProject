@@ -33,39 +33,51 @@ $loggedInUser = $_SESSION['user'] ?? null;
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
+<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Projeto PW - Música</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <style>
+        /* Imagem de fundo */
         body {
-            background-color: #f8f9fa;
-        }
+    background-image: url('...\PW\PWProject\imgs\back.jpg'); /* Verifique o caminho da imagem */
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #333; /* Alterar a cor do texto para um cinza escuro */
+}
 
-        .navbar {
-            background-color: #6c757d;
-        }
+/* Navbar e links */
+.navbar {
+    background-color: rgba(108, 117, 125, 0.9); /* Navbar levemente opaca */
+}
 
-        .navbar-brand,
-        .nav-link {
-            color: #ffffff !important;
-        }
+.navbar-brand,
+.nav-link {
+    color: #ffffff !important;
+}
 
-        .jumbotron {
-            background-color: #e9ecef;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            border-radius: 0.3rem;
-        }
+/* Jumbotron e Cartões */
+.jumbotron {
+    background-color: rgba(255, 255, 255, 0.8); /* Fundo branco semi-transparente */
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 0.3rem;
+    color: #333; /* Cor do texto */
+}
 
-        .card {
-            transition: transform 0.2s;
-        }
+.card {
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo branco semi-transparente */
+    transition: transform 0.2s;
+    color: #333; /* Cor do texto */
+}
 
-        .card:hover {
-            transform: scale(1.05);
-        }
+.card:hover {
+    transform: scale(1.05);
+}
     </style>
 </head>
 

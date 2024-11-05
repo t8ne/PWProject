@@ -1,0 +1,29 @@
+/* Imagem de fundo */
+.background-image {
+    position: fixed; /* Fixa a imagem no fundo */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../imgs/back.jpg'); /* Caminho da imagem */
+    background-size: cover; /* Cobre toda a tela */
+    background-position: center; /* Centraliza a imagem */
+    z-index: -1; /* Coloca a imagem atrás do conteúdo */
+    opacity: 0.5; /* Ajuste a opacidade */
+}
+
+/* Conteúdo principal */
+.content {
+    position: relative; /* Permite que o z-index funcione */
+    z-index: 1; /* Coloca o conteúdo acima da imagem de fundo */
+}
+
+/* Cartões */
+.card {
+    background-color: rgba(255, 255, 255, 0.8); /* Fundo semi-transparente dos cartões */
+    transition: transform 0.2s; /* Transição suave */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Aumenta o cartão ao passar o mouse */
+}
