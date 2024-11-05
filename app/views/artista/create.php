@@ -12,7 +12,7 @@
                             <input type="text" class="form-control" id="nome" name="nome" required>
                         </div>
                         <div class="mb-3">
-                            <label for="nacionalidade" class="form-label">Nacionalidade:</label>
+                            <label for="nacionalidade" class="form-label">Nacionalidade :</label>
                             <input type="text" class="form-control" id="nacionalidade" name="nacionalidade" required>
                         </div>
                         <div class="d-grid">
