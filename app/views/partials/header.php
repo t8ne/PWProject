@@ -42,7 +42,7 @@ $loggedInUser = $_SESSION['user'] ?? null;
     <style>
         /* Imagem de fundo */
         body {
-    background-image: url('...\PW\PWProject\imgs\back.jpg'); /* Verifique o caminho da imagem */
+    background-image: url('../PWProject/imgs/back.jpg'); /* Verifique o caminho da imagem */
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
