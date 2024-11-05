@@ -19,7 +19,8 @@
   <div class="col-md-4 mb-4">
     <div class="card h-100">
       <div class="card-body text-center">
-        <i class="fas fa-guitar fa-3x mb-3 text-success"></i>
+     
+        <i class="fa-solid fa-headphones-simple fa-3x mb-3 text-success"></i>
         <h5 class="card-title">Géneros</h5>
         <p class="card-text">Explore os diferentes estilos musicais.</p>
         <a href="<?php echo $url_alias; ?>/genero" class="btn btn-success">Ver Géneros</a>
