@@ -3,7 +3,7 @@
   <!-- Imagem de fundo -->
   <div class="background-image"></div>
 
-<div class="jumbotron text-center">
+  <div class="jumbotron text-center" style="background-color: #ffffff; color: #000000;">
   <h1 class="display-4">Bem-vindo ao Projeto PW</h1>
   <p class="lead">Explore o mundo da música através de artistas, géneros, álbuns e muito mais!</p>
 </div>
