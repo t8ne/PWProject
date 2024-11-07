@@ -1,11 +1,9 @@
 <?php include 'app/views/partials/header.php'; ?>
 
-  <!-- Imagem de fundo -->
-  <div class="background-image"></div>
 
   <div class="jumbotron text-center" style="background-color: #ffffff; color: #000000;">
-  <h1 class="display-4">Bem-vindo ao Projeto PW</h1>
-  <p class="lead">Explore o mundo da música através de artistas, géneros, álbuns e muito mais!</p>
+  <h1 class="display-4">Sound808</h1>
+  <p class="lead">Explore o mundo da música através de artistas, géneros, álbuns e produtores.</p>
 </div>
 
 <div class="row">
@@ -63,6 +61,7 @@
 </div>
 
 <?php include 'app/views/partials/footer.php'; ?>
+
 
 
 

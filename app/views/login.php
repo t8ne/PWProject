@@ -31,11 +31,11 @@ include 'app/views/partials/header.php';
             <div class="card-body">
                 <form method="POST" action="">
                     <div class="mb-3">
-                        <label for="username" class="form-label">Nome de usuário</label>
+                        <label for="username" class="form-label">Nome de utilizador</label>
                         <input type="text" class="form-control" id="username" name="username" required>
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="form-label">Senha</label>
+                        <label for="password" class="form-label">Palavra-passe</label>
                         <input type="password" class="form-control" id="password" name="password" required>
                     </div>
                     <button type="submit" name="login" class="btn btn-primary">Entrar</button>
