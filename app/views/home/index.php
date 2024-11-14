@@ -43,7 +43,7 @@
       <div class="card-body text-center">
         <i class="fas fa-music fa-3x mb-3 text-warning"></i>
         <h5 class="card-title">Músicas</h5>
-        <p class="card-text">Descubra as faixas que compõem os álbuns.</p>
+        <p class="card-text">Encontra as músicas os álbuns possuem.</p>
         <a href="<?php echo $url_alias; ?>/musica" class="btn btn-warning">Ver Músicas</a>
       </div>
     </div>
