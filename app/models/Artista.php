@@ -33,7 +33,6 @@ class Artista
         ]);
     }
 
-
     public static function getAllArtistas()
     {
         $db = new Db();
@@ -48,4 +47,12 @@ class Artista
         return $db->execQuery($sql, [$id]);
     }
 
+    // Método de pesquisa
+    public static function searchArtistas($searchTerm)
+    {
+        $db = new Db();
+        $sql = "SELECT * FROM artista WHERE nome LIKE ?";
+        $params = ['%' . $searchTerm . '%'];  // Pesquisa por nome que contenha o termo
+        return $db->execQuery($sql, $params);
+    }
 }

@@ -4,12 +4,35 @@ use app\core\Controller;
 
 class Artista extends Controller
 {
-
     public function index()
     {
         $Artistas = $this->model('Artista');
-        $data = $Artistas::getAllArtistas();
-        $this->view('artista/index', ['artistas' => $data]);
+
+        // Obter o termo de pesquisa da URL (se existir)
+        $searchTerm = $_GET['search'] ?? '';
+        $ordem = $_GET['ordem'] ?? 'asc';  // Definir a ordem padrão como 'asc'
+
+        // Se houver um termo de pesquisa, buscar artistas filtrados
+        if (!empty($searchTerm)) {
+            $data = $Artistas::searchArtistas($searchTerm);
+        } else {
+            // Caso contrário, retornar todos os artistas
+            $data = $Artistas::getAllArtistas();
+        }
+
+        // Ordenar os resultados conforme o valor de 'ordem'
+        if ($ordem === 'desc') {
+            usort($data, function ($a, $b) {
+                return strcmp($b['nome'], $a['nome']);
+            });
+        } else {
+            usort($data, function ($a, $b) {
+                return strcmp($a['nome'], $b['nome']);
+            });
+        }
+
+        // Passar os dados para a view
+        $this->view('artista/index', ['artistas' => $data, 'search' => $searchTerm, 'ordem' => $ordem]);
     }
 
     public function create()
@@ -65,18 +88,17 @@ class Artista extends Controller
             }
         }
     }
+
     public function delete($id = null)
     {
         if (is_numeric($id)) {
             $Albums = $this->model('Album');
-            $albumCount = $Albums::countAlbumsByArtista($id); // Contar álbuns associados
+            $albumCount = $Albums::countAlbumsByArtista($id);
 
             if ($albumCount > 0) {
-                // Se houver álbuns associados, pedir confirmação ao usuário
                 $info = "Este artista possui $albumCount álbuns associados. Deseja excluir todos os álbuns associados junto com o artista?";
                 $this->view('artista/confirmDelete', ['artista_id' => $id, 'info' => $info]);
             } else {
-                // Se não houver álbuns, excluir o artista diretamente
                 $Artistas = $this->model('Artista');
                 $info = $Artistas::deleteArtista($id);
 
@@ -92,12 +114,10 @@ class Artista extends Controller
     {
         if (is_numeric($id)) {
             $Albums = $this->model('Album');
-
-            // Excluir todos os álbuns associados ao artista
             $Albums::deleteAlbumsByArtista($id);
 
             $Artistas = $this->model('Artista');
-            $info = $Artistas::deleteArtista($id); // Excluir o artista
+            $info = $Artistas::deleteArtista($id);
 
             $data = $Artistas::getAllArtistas();
             $this->view('artista/index', ['artistas' => $data, 'info' => $info, 'type' => 'DELETE']);
@@ -105,5 +125,4 @@ class Artista extends Controller
             $this->pageNotFound();
         }
     }
-
 }
