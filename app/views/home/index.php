@@ -1,7 +1,6 @@
 <?php include 'app/views/partials/header.php'; ?>
 
   <!-- Imagem de fundo -->
-  <div class="background-image"></div>
 
 <div class="jumbotron text-center">
   <h1 class="display-4">Bem-vindo ao Projeto PW</h1>
