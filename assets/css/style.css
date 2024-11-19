@@ -1,16 +1,3 @@
-/* Imagem de fundo */
-.background-image {
-    position: fixed; /* Fixa a imagem no fundo */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('../imgs/back.jpg'); /* Caminho da imagem */
-    background-size: cover; /* Cobre toda a tela */
-    background-position: center; /* Centraliza a imagem */
-    z-index: -1; /* Coloca a imagem atrás do conteúdo */
-    opacity: 0.5; /* Ajuste a opacidade */
-}
 
 /* Conteúdo principal */
 .content {

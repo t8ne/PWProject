@@ -29,13 +29,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
 $isAdmin = $_SESSION['isAdmin'] ?? false;
 $loggedInUser = $_SESSION['user'] ?? null;
 ?>
+
 <!doctype html>
 <html lang="en">
 
 <head>
 <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Projeto PW - Música</title>
+    <title>Sound808</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -85,7 +86,7 @@ $loggedInUser = $_SESSION['user'] ?? null;
     <nav class="navbar navbar-expand-lg navbar-dark mb-4">
         <div class="container">
             <a class="navbar-brand" href="<?php echo $url_alias2; ?>">
-                <i class="fas fa-music me-2"></i>Projeto PW
+                <i class="fas fa-music me-2"></i>Sound808
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

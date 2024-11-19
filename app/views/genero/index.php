@@ -11,6 +11,13 @@
         </div>
     <?php endif; ?>
 
+    <!-- Formulário para seleção da ordem alfabética -->
+    <form method="GET" class="mb-4">
+        <label for="ordem" class="form-label">Ordenar por:</label>
+        <select name="ordem" id="ordem" class="form-select" onchange="this.form.submit()">
+            <option value="asc" <?php echo (isset($_GET['ordem']) && $_GET['ordem'] == 'asc') ? 'selected' : ''; ?>>A-Z</option>
+        </select>
+    </form>
     <div class="container">
         <div class="row">
             <?php
@@ -33,14 +40,9 @@
                 ],
                 [
                     "title" => "Trap",
-                    "image" => "imgs/hiphop.jpg",
-                    "text" => "O Trap é um subgênero do hip-hop que surgiu no sul dos Estados Unidos nos anos 2000. É caracterizado por batidas pesadas e arranjos de 808, além de letras que exploram temas urbanos e da vida nas ruas. Com um estilo intenso e ritmado, o Trap ganhou popularidade mundial, influenciando desde o rap até o pop, com artistas que incorporam melodias autênticas e produções experimentais. Hoje, o Trap continua evoluindo e conquistando uma ampla audiência, refletindo novas sonoridades e tendências da música contemporânea."
+                    "image" => "imgs/hq720.jpg",
+                    "text" => "O Trap é um subgénero do hip-hop que surgiu no sul dos Estados Unidos nos anos 2000. É caracterizado por batidas pesadas e preseça de 808s, além de letras que exploram temas urbanos e da vida nas ruas."
                 ],
-                [
-                    "title" => "Metal",
-                    "image" => "imgs/metal.jpg",
-                    "text" => "O Metal é um género de música pesada que surgiu no final dos anos 1960 e é conhecido pelos riffs de guitarra distorcidos, vocais intensos e temas poderosos."
-                ]
             ];
 
             // Mesclar os gêneros dinâmicos se houver

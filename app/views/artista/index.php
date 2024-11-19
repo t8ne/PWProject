@@ -11,7 +11,16 @@
         </div>
     <?php endif; ?>
 
+    <!-- Formulário para seleção da ordem alfabética -->
+    <form method="GET" class="mb-4">
+        <label for="ordem" class="form-label">Ordenar por:</label>
+        <select name="ordem" id="ordem" class="form-select" onchange="this.form.submit()">
+            <option value="asc" <?php echo (isset($_GET['ordem']) && $_GET['ordem'] == 'asc') ? 'selected' : ''; ?>>A-Z</option>
+        </select>
+    </form>
+
     <?php
+    // Exibir mensagem de ação de artista (inserção, atualização, exclusão)
     if (isset($data['info']) && is_array($data['info']) && isset($data['type'])) {
         $type = $data['type'];
         $alertClass = '';
@@ -36,6 +45,21 @@
         echo "<div class='alert $alertClass' role='alert'>";
         echo "<i class='fas $icon me-2'></i>$message";
         echo "</div>";
+    }
+
+    // Ordenar artistas com base na seleção do usuário
+    if (isset($data['artistas']) && is_array($data['artistas']) && !empty($data['artistas'])) {
+        if (isset($_GET['ordem']) && $_GET['ordem'] === 'desc') {
+            // Ordem decrescente (Z-A)
+            usort($data['artistas'], function ($a, $b) {
+                return strcmp($b['nome'], $a['nome']);
+            });
+        } else {
+            // Ordem crescente (A-Z, padrão)
+            usort($data['artistas'], function ($a, $b) {
+                return strcmp($a['nome'], $b['nome']);
+            });
+        }
     }
     ?>
 

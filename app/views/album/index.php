@@ -11,6 +11,15 @@
         </div>
     <?php endif; ?>
 
+
+     <!-- Formulário para seleção da ordem alfabética -->
+     <form method="GET" class="mb-4">
+        <label for="ordem" class="form-label">Ordenar por:</label>
+        <select name="ordem" id="ordem" class="form-select" onchange="this.form.submit()">
+            <option value="asc" <?php echo (isset($_GET['ordem']) && $_GET['ordem'] == 'asc') ? 'selected' : ''; ?>>A-Z</option>
+        </select>
+    </form>
+
     <?php
     if (isset($data['info']) && is_array($data['info']) && isset($data['type'])) {
         $type = $data['type'];

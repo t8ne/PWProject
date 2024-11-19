@@ -1,10 +1,7 @@
 <?php include 'app/views/partials/header.php'; ?>
-
-  <!-- Imagem de fundo -->
-
-<div class="jumbotron text-center">
-  <h1 class="display-4">Bem-vindo ao Projeto PW</h1>
-  <p class="lead">Explore o mundo da música através de artistas, géneros, álbuns e muito mais!</p>
+  <div class="jumbotron text-center" style="background-color: #ffffff; color: #000000;">
+  <h1 class="display-4">Sound808</h1>
+  <p class="lead">Explore o mundo da música através de artistas, géneros, álbuns e produtores.</p>
 </div>
 
 <div class="row">
@@ -44,7 +41,7 @@
       <div class="card-body text-center">
         <i class="fas fa-music fa-3x mb-3 text-warning"></i>
         <h5 class="card-title">Músicas</h5>
-        <p class="card-text">Descubra as faixas que compõem os álbuns.</p>
+        <p class="card-text">Encontra as músicas os álbuns possuem.</p>
         <a href="<?php echo $url_alias; ?>/musica" class="btn btn-warning">Ver Músicas</a>
       </div>
     </div>
@@ -62,6 +59,7 @@
 </div>
 
 <?php include 'app/views/partials/footer.php'; ?>
+
 
 
 
