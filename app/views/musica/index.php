@@ -1,8 +1,7 @@
 <?php include 'app/views/partials/header.php'; ?> <!-- Inclui o cabeçalho da página -->
 
 <div class="container">
-    <!-- Título da página -->
-    <h2 class="mb-4">Lista de Músicas</h2>
+    <h2 class="mb-4" style="text-align: center">Músicas Criadas</h2>
 
     <?php if ($isAdmin): ?> <!-- Exibe o botão para criar música apenas se o usuário for administrador -->
         <div class="mb-3">
@@ -11,14 +10,6 @@
             </a>
         </div>
     <?php endif; ?>
-
-    <!-- Formulário para ordenação das músicas -->
-    <form method="GET" class="mb-4">
-        <label for="ordem" class="form-label">Ordenar por:</label> <!-- Rótulo do seletor -->
-        <select name="ordem" id="ordem" class="form-select" onchange="this.form.submit()"> <!-- Envia o formulário ao alterar a seleção -->
-            <option value="asc" <?php echo (isset($_GET['ordem']) && $_GET['ordem'] == 'asc') ? 'selected' : ''; ?>>A-Z</option> <!-- Ordenação crescente -->
-        </select>
-    </form>
 
     <?php
     // Exibe mensagens de feedback após ações como inserir, atualizar ou excluir músicas
@@ -51,7 +42,14 @@
     ?>
 
     <?php if (isset($data['musicas']) && is_array($data['musicas']) && !empty($data['musicas'])): ?>
-        <!-- Exibe a lista de músicas -->
+        <!-- Formulário para seleção da ordem alfabética -->
+        <form method="GET" class="mb-4">
+            <label for="ordem" class="form-label">Ordenar por:</label>
+            <select name="ordem" id="ordem" class="form-select" onchange="this.form.submit()">
+                <option value="asc" <?php echo (isset($_GET['ordem']) && $_GET['ordem'] == 'asc') ? 'selected' : ''; ?>>A-Z
+                </option>
+            </select>
+        </form>
         <div class="row">
             <?php foreach ($data['musicas'] as $musica): ?> <!-- Itera sobre a lista de músicas -->
                 <div class="col-md-4 mb-4"> <!-- Define a largura e espaçamento de cada música na grade -->

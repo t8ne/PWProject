@@ -1,24 +1,8 @@
 <?php include 'app/views/partials/header.php'; ?>
 
 <div class="container">
-    <h2 class="mb-4">Lista de Géneros</h2>
-
-    <?php if ($isAdmin): ?>
-        <div class="mb-3">
-            <a href="<?php echo $url_alias; ?>/genero/create" class="btn btn-primary">
-                <i class="fas fa-plus-circle me-2"></i>Novo Género
-            </a>
-        </div>
-    <?php endif; ?>
-
-    <!-- Formulário para seleção da ordem alfabética -->
-    <form method="GET" class="mb-4">
-        <label for="ordem" class="form-label">Ordenar por:</label>
-        <select name="ordem" id="ordem" class="form-select" onchange="this.form.submit()">
-            <option value="asc" <?php echo (isset($_GET['ordem']) && $_GET['ordem'] == 'asc') ? 'selected' : ''; ?>>A-Z</option>
-        </select>
-    </form>
     <div class="container">
+        <h2 class="mb-4" style="text-align: center">Géneros Populares</h2>
         <div class="row">
             <?php
             // Gêneros estáticos e dinâmicos
@@ -45,26 +29,16 @@
                 ],
             ];
 
-            // Mesclar os gêneros dinâmicos se houver
-            if (isset($data['generos']) && is_array($data['generos'])) {
-                foreach ($data['generos'] as $genero) {
-                    $cards[] = [
-                        "title" => htmlspecialchars($genero['nome']),
-                        "image" => !empty($genero['imagem']) ? $genero['imagem'] : 'imgs/default.jpg',
-                        "text" => !empty($genero['descricao']) ? htmlspecialchars($genero['descricao']) : 'Descrição não disponível.'
-                    ];
-                }
-            }
 
             // Exibir cada card na grid
             foreach ($cards as $card) {
                 echo '
                 <div class="col-md-3 col-sm-6 mb-4">
                     <div class="card" style="width: 100%;">
-                        <img class="card-img-top" src="'.$card["image"].'" alt="Imagem de '.$card["title"].'">
+                        <img class="card-img-top" src="' . $card["image"] . '" alt="Imagem de ' . $card["title"] . '">
                         <div class="card-body">
-                            <h5 class="card-title">'.$card["title"].'</h5>
-                            <p class="card-text">'.$card["text"].'</p>
+                            <h5 class="card-title">' . $card["title"] . '</h5>
+                            <p class="card-text">' . $card["text"] . '</p>
                         </div>
                     </div>
                 </div>';
@@ -100,6 +74,61 @@
         echo "</div>";
     }
     ?>
+</div>
+
+<h2 class="mb-4" style="text-align: center">Géneros Criados</h2>
+
+<?php if ($isAdmin): ?>
+    <div class="mb-3">
+        <a href="<?php echo $url_alias; ?>/genero/create" class="btn btn-primary">
+            <i class="fas fa-plus-circle me-2"></i>Novo Género
+        </a>
+    </div>
+<?php endif; ?>
+
+<?php if (isset($data['generos']) && is_array($data['generos']) && !empty($data['generos'])): ?>
+    <form method="GET" class="mb-4">
+        <label for="ordem" class="form-label">Ordenar por:</label>
+        <select name="ordem" id="ordem" class="form-select" onchange="this.form.submit()">
+            <option value="asc" <?php echo (isset($_GET['ordem']) && $_GET['ordem'] == 'asc') ? 'selected' : ''; ?>>A-Z
+            </option>
+        </select>
+    </form>
+    <div class="row">
+        <?php foreach ($data['generos'] as $genero): ?>
+            <?php if (is_array($genero) && isset($genero['id_g  enero'], $genero['nome'])): ?>
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo htmlspecialchars($genero['nome']); ?></h5>
+                            <div class="btn-group" role="group">
+                                <a href="<?php echo $url_alias; ?>/genero/get/<?php echo $genero['id_genero']; ?>"
+                                    class="btn btn-primary">
+                                    <i class="fas fa-eye me-1"></i>Ver
+                                </a>
+                                <?php if ($isAdmin): ?>
+                                    <a href="<?php echo $url_alias; ?>/genero/update/<?php echo $genero['id_genero']; ?>"
+                                        class="btn btn-warning">
+                                        <i class="fas fa-edit me-1"></i>Editar
+                                    </a>
+                                    <a href="<?php echo $url_alias; ?>/genero/delete/<?php echo $genero['id_genero']; ?>"
+                                        class="btn btn-danger"
+                                        onclick="return confirm('Tem certeza que deseja eliminar este genero?');">
+                                        <i class="fas fa-trash-alt me-1"></i>Eliminar
+                                    </a>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    </div>
+<?php else: ?>
+    <div class="alert alert-info" role="alert">
+        <i class="fas fa-info-circle me-2"></i>Nenhum genero encontrado.
+    </div>
+<?php endif; ?>
 </div>
 
 <?php include 'app/views/partials/footer.php'; ?>
