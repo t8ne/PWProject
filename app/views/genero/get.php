@@ -6,7 +6,7 @@
             <div class="card mt-5">
                 <div class="card-body">
                     <?php if (empty($data['genero'])): ?>
-                        <h1 class="text-center">O gênero não existe na nossa base de dados...</h1>
+                        <h1 class="text-center">O género não existe na nossa base de dados...</h1>
                     <?php else: ?>
                         <h2 class="card-title text-center mb-4"><?php echo htmlspecialchars($data['genero'][0]['nome']); ?>
                         </h2>
@@ -22,7 +22,7 @@
                                 <?php endforeach; ?>
                             </div>
                         <?php else: ?>
-                            <p class="text-center">Não existem álbuns associados a este gênero.</p>
+                            <p class="text-center">Não existem álbuns associados a este género.</p>
                         <?php endif; ?>
                     <?php endif; ?>
                 </div>
