@@ -1,11 +1,7 @@
 <?php include 'app/views/partials/header.php'; ?> <!-- Inclui o cabeçalho da página -->
 
 <div class="container">
-<<<<<<< HEAD
     <h2 class="mb-4" style="text-align: center">Artistas Criados</h2>
-=======
-    <h2 class="mb-4">Lista de Artistas</h2> <!-- Título da página -->
->>>>>>> ae21280ba224c001faeb1524a3b81065ff9b259b
 
     <?php if ($isAdmin): ?> <!-- Verifica se o usuário atual é um administrador -->
         <div class="mb-3">
@@ -22,7 +18,7 @@
         $type = $data['type']; // Determina o tipo de ação
         $alertClass = ''; // Classe CSS do alerta
         $icon = ''; // Ícone do alerta
-
+    
         // Define o conteúdo do alerta com base no tipo de ação
         switch ($type) {
             case 'INSERT': // Inserção de artista
@@ -48,13 +44,12 @@
         echo "</div>";
     }
 
-    // Ordena os artistas 
     if (isset($data['artistas']) && is_array($data['artistas']) && !empty($data['artistas'])) {
-            // Ordena os artistas em ordem crescente (A-Z, padrão)
-            usort($data['artistas'], function ($a, $b) {
-                return strcmp($a['nome'], $b['nome']);
-            });
-        }
+        // Ordena os artistas em ordem crescente (A-Z, padrão)
+        usort($data['artistas'], function ($a, $b) {
+            return strcmp($a['nome'], $b['nome']);
+        });
+    }
     ?>
 
     <?php if (isset($data['artistas']) && is_array($data['artistas']) && !empty($data['artistas'])): ?>
@@ -105,8 +100,4 @@
     <?php endif; ?>
 </div>
 
-<<<<<<< HEAD
 <?php include 'app/views/partials/footer.php'; ?>
-=======
-<?php include 'app/views/partials/footer.php'; ?> <!-- Inclui o rodapé da página -->
->>>>>>> ae21280ba224c001faeb1524a3b81065ff9b259b

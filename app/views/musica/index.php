@@ -11,14 +11,6 @@
         </div>
     <?php endif; ?>
 
-        <!-- Formulário para seleção da ordem alfabética -->
-        <form method="GET" class="mb-4">
-        <label for="ordem" class="form-label">Ordenar por:</label>
-        <select name="ordem" id="ordem" class="form-select" onchange="this.form.submit()">
-            <option value="asc" <?php echo (isset($_GET['ordem']) && $_GET['ordem'] == 'asc') ? 'selected' : ''; ?>>A-Z</option>
-        </select>
-    </form>
-
     <?php
     // Exibe mensagens de feedback após ações como inserir, atualizar ou excluir músicas
     if (isset($data['musica']) && isset($data['type'])) {
@@ -50,6 +42,14 @@
     ?>
 
     <?php if (isset($data['musicas']) && is_array($data['musicas']) && !empty($data['musicas'])): ?>
+        <!-- Formulário para seleção da ordem alfabética -->
+        <form method="GET" class="mb-4">
+            <label for="ordem" class="form-label">Ordenar por:</label>
+            <select name="ordem" id="ordem" class="form-select" onchange="this.form.submit()">
+                <option value="asc" <?php echo (isset($_GET['ordem']) && $_GET['ordem'] == 'asc') ? 'selected' : ''; ?>>A-Z
+                </option>
+            </select>
+        </form>
         <div class="row">
             <?php foreach ($data['musicas'] as $musica): ?> <!-- Itera sobre a lista de músicas -->
                 <div class="col-md-4 mb-4"> <!-- Define a largura e espaçamento de cada música na grade -->
