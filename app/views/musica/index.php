@@ -1,7 +1,7 @@
 <?php include 'app/views/partials/header.php'; ?> <!-- Inclui o cabeçalho da página -->
 
 <div class="container">
-    <h2 class="mb-4">Lista de Músicas</h2>
+    <h2 class="mb-4" style="text-align: center">Músicas Criadas</h2>
 
     <?php if ($isAdmin): ?> <!-- Exibe o botão para criar música apenas se o usuário for administrador -->
         <div class="mb-3">
