@@ -10,6 +10,8 @@
                         <div class="mb-3">
                             <label for="nome" class="form-label">Nome:</label>
                             <input type="text" class="form-control" id="nome" name="nome" required>
+                            <label for="genero" class="form-label">Descrição:</label>
+                            <input type="text" class="form-control" id="descricao" name="descricao" required>
                         </div>
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary">

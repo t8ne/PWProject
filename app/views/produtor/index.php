@@ -19,37 +19,91 @@
         </select>
     </form>
 
+    <div class="container">
+        <div class="row">
+            <?php
+            // Gêneros estáticos e dinâmicos
+            $cards = [
+                [
+                    "title" => "WeGonBeOK",
+                    "image" => "imgs/artworks-qzHznKsD1Eo0QU3J-E2yF4w-t500x500.jpg",
+                    "text" => "O rock é um género musical que surgiu nos anos 1950, misturando blues e R&B. É conhecido pelo uso da guitarra elétrica e letras sobre liberdade e rebeldia. Marcou gerações e influenciou diversos estilos."
+                ],
+                [
+                    "title" => "Pierre Bourne",
+                    "image" => "imgs/ab6761610000e5eb057015e505454bc625940dc3.jpg",
+                    "text" => "O jazz é um género musical caracterizado pela improvisação e variação rítmica. Originou no final do século XIX e influenciou diversos outros géneros musicais."
+                ],
+                [
+                    "title" => "Richie Souf",
+                    "image" => "imgs/ab6761610000e5eb5ad21e2a5c2f5f784b1c65ab.jpg",
+                    "text" => "O pop é um género musical popular conhecido pelo seu apelo mainstream, melodias cativantes e foco em vocais e produção."
+                ],
+                [
+                    "title" => "2hollis",
+                    "image" => "imgs/2ollis.jpg",
+                    "text" => "O Trap é um subgénero do hip-hop que surgiu no sul dos Estados Unidos nos anos 2000. É caracterizado por batidas pesadas e preseça de 808s, além de letras que exploram temas urbanos e da vida nas ruas."
+                ],
+            ];
+
+            // Mesclar os gêneros dinâmicos se houver
+            if (isset($data['generos']) && is_array($data['generos'])) {
+                foreach ($data['generos'] as $genero) {
+                    $cards[] = [
+                        "title" => htmlspecialchars($genero['nome']),
+                        "image" => !empty($genero['imagem']) ? $genero['imagem'] : 'imgs/default.jpg',
+                        "text" => !empty($genero['descricao']) ? htmlspecialchars($genero['descricao']) : 'Descrição não disponível.'
+                    ];
+                }
+            }
+
+            // Exibir cada card na grid
+            foreach ($cards as $card) {
+                echo '
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="card" style="width: 100%;">
+                        <img class="card-img-top" src="'.$card["image"].'" alt="Imagem de '.$card["title"].'">
+                        <div class="card-body">
+                            <h5 class="card-title">'.$card["title"].'</h5>
+                            <p class="card-text">'.$card["text"].'</p>
+                        </div>
+                    </div>
+                </div>';
+            }
+            ?>
+        </div>
+    </div>
 
     <?php
-    if (isset($data['info']) && isset($data['type'])) {
+    if (isset($data['info']) && is_array($data['info']) && isset($data['type'])) {
         $type = $data['type'];
-        $info = $data['info'];
-        if (is_array($info) && isset($info['nome'])) {
-            $alertClass = '';
-            $icon = '';
-            switch ($type) {
-                case 'INSERT':
-                    $alertClass = 'alert-success';
-                    $icon = 'fa-check-circle';
-                    $message = 'Produtor - ' . htmlspecialchars($info['nome']) . ' - inserido com sucesso.';
-                    break;
-                case 'UPDATE':
-                    $alertClass = 'alert-info';
-                    $icon = 'fa-edit';
-                    $message = 'A informação do produtor - ' . htmlspecialchars($info['nome']) . ' - foi atualizada.';
-                    break;
-                case 'DELETE':
-                    $alertClass = 'alert-warning';
-                    $icon = 'fa-trash-alt';
-                    $message = 'O produtor - ' . htmlspecialchars($info['nome']) . ' - foi eliminado.';
-                    break;
-            }
-            echo "<div class='alert $alertClass' role='alert'>";
-            echo "<i class='fas $icon me-2'></i>$message";
-            echo "</div>";
+        $alertClass = '';
+        $icon = '';
+        switch ($type) {
+            case 'INSERT':
+                $alertClass = 'alert-success';
+                $icon = 'fa-check-circle';
+                $message = 'Género - ' . htmlspecialchars($data['info']['nome']) . ' - inserido com sucesso.';
+                break;
+            case 'UPDATE':
+                $alertClass = 'alert-info';
+                $icon = 'fa-edit';
+                $message = 'A informação do género - ' . htmlspecialchars($data['info']['nome']) . ' - foi atualizada.';
+                break;
+            case 'DELETE':
+                $alertClass = 'alert-warning';
+                $icon = 'fa-trash-alt';
+                $message = 'O género - ' . htmlspecialchars($data['info']['nome']) . ' - foi eliminado.';
+                break;
         }
+        echo "<div class='alert $alertClass' role='alert'>";
+        echo "<i class='fas $icon me-2'></i>$message";
+        echo "</div>";
     }
     ?>
+</div>
+
+<?php include 'app/views/partials/footer.php'; ?>
 
     <?php if (isset($data['produtores']) && is_array($data['produtores']) && !empty($data['produtores'])): ?>
         <div class="row">
