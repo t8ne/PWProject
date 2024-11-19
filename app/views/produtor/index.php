@@ -99,7 +99,7 @@ if (isset($data['produtores']) && is_array($data['produtores'])) {
     usort($data['produtores'], function ($a, $b) use ($ordem) {
         return $ordem === 'asc'
             ? strcasecmp($a['nome'], $b['nome']) // A-Z
-
+            : strcasecmp($b['nome'], $a['nome']); // Z-A
     });
 }
 ?>
