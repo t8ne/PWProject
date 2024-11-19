@@ -52,8 +52,7 @@
                         <!-- Botão para salvar a nova música -->
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-save me-2"></i>Salvar <!-- Ícone e texto do botão -->
-                            </button>
+                                <i class="fas fa-save me-2"></i>Salvar <!-- Ícone e texto do botão -->  </button>
                         </div>
                     </form>
                 </div>
