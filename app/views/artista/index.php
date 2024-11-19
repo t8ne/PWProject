@@ -1,10 +1,15 @@
-<?php include 'app/views/partials/header.php'; ?>
+<?php include 'app/views/partials/header.php'; ?> <!-- Inclui o cabeçalho da página -->
 
 <div class="container">
+<<<<<<< HEAD
     <h2 class="mb-4" style="text-align: center">Artistas Criados</h2>
+=======
+    <h2 class="mb-4">Lista de Artistas</h2> <!-- Título da página -->
+>>>>>>> ae21280ba224c001faeb1524a3b81065ff9b259b
 
-    <?php if ($isAdmin): ?>
+    <?php if ($isAdmin): ?> <!-- Verifica se o usuário atual é um administrador -->
         <div class="mb-3">
+            <!-- Botão para criar um novo artista, visível apenas para administradores -->
             <a href="<?php echo $url_alias; ?>/artista/create" class="btn btn-primary">
                 <i class="fas fa-plus-circle me-2"></i>Novo Artista
             </a>
@@ -12,47 +17,44 @@
     <?php endif; ?>
 
     <?php
-    // Exibir mensagem de ação de artista (inserção, atualização, exclusão)
+    // Exibe mensagens sobre ações realizadas (adicionar, editar, excluir artista)
     if (isset($data['info']) && is_array($data['info']) && isset($data['type'])) {
-        $type = $data['type'];
-        $alertClass = '';
-        $icon = '';
+        $type = $data['type']; // Determina o tipo de ação
+        $alertClass = ''; // Classe CSS do alerta
+        $icon = ''; // Ícone do alerta
+
+        // Define o conteúdo do alerta com base no tipo de ação
         switch ($type) {
-            case 'INSERT':
-                $alertClass = 'alert-success';
-                $icon = 'fa-check-circle';
+            case 'INSERT': // Inserção de artista
+                $alertClass = 'alert-success'; // Alerta verde
+                $icon = 'fa-check-circle'; // Ícone de sucesso
                 $message = 'Artista - ' . htmlspecialchars($data['info']['nome']) . ' - inserido com sucesso.';
                 break;
-            case 'UPDATE':
-                $alertClass = 'alert-info';
-                $icon = 'fa-edit';
+            case 'UPDATE': // Atualização de artista
+                $alertClass = 'alert-info'; // Alerta azul
+                $icon = 'fa-edit'; // Ícone de edição
                 $message = 'A informação do artista - ' . htmlspecialchars($data['info']['nome']) . ' - foi atualizada.';
                 break;
-            case 'DELETE':
-                $alertClass = 'alert-warning';
-                $icon = 'fa-trash-alt';
+            case 'DELETE': // Exclusão de artista
+                $alertClass = 'alert-warning'; // Alerta amarelo
+                $icon = 'fa-trash-alt'; // Ícone de exclusão
                 $message = 'O artista - ' . htmlspecialchars($data['info']['nome']) . ' - foi eliminado.';
                 break;
         }
+
+        // Exibe o alerta na tela
         echo "<div class='alert $alertClass' role='alert'>";
         echo "<i class='fas $icon me-2'></i>$message";
         echo "</div>";
     }
 
-    // Ordenar artistas com base na seleção do usuário
+    // Ordena os artistas 
     if (isset($data['artistas']) && is_array($data['artistas']) && !empty($data['artistas'])) {
-        if (isset($_GET['ordem']) && $_GET['ordem'] === 'desc') {
-            // Ordem decrescente (Z-A)
-            usort($data['artistas'], function ($a, $b) {
-                return strcmp($b['nome'], $a['nome']);
-            });
-        } else {
-            // Ordem crescente (A-Z, padrão)
+            // Ordena os artistas em ordem crescente (A-Z, padrão)
             usort($data['artistas'], function ($a, $b) {
                 return strcmp($a['nome'], $b['nome']);
             });
         }
-    }
     ?>
 
     <?php if (isset($data['artistas']) && is_array($data['artistas']) && !empty($data['artistas'])): ?>
@@ -64,21 +66,25 @@
             </select>
         </form>
         <div class="row">
-            <?php foreach ($data['artistas'] as $artist): ?>
+            <?php foreach ($data['artistas'] as $artist): ?> <!-- Itera sobre cada artista -->
                 <div class="col-md-4 mb-4">
                     <div class="card">
                         <div class="card-body">
+                            <!-- Exibe o nome do artista -->
                             <h5 class="card-title"><?php echo htmlspecialchars($artist['nome']); ?></h5>
                             <div class="btn-group" role="group">
+                                <!-- Botão para visualizar o artista -->
                                 <a href="<?php echo $url_alias; ?>/artista/get/<?php echo $artist['id_artista']; ?>"
                                     class="btn btn-primary">
                                     <i class="fas fa-eye me-1"></i>Ver
                                 </a>
-                                <?php if ($isAdmin): ?>
+                                <?php if ($isAdmin): ?> <!-- Opções adicionais para administradores -->
+                                    <!-- Botão para editar o artista -->
                                     <a href="<?php echo $url_alias; ?>/artista/update/<?php echo $artist['id_artista']; ?>"
                                         class="btn btn-warning">
                                         <i class="fas fa-edit me-1"></i>Editar
                                     </a>
+                                    <!-- Botão para excluir o artista -->
                                     <a href="<?php echo $url_alias; ?>/artista/delete/<?php echo $artist['id_artista']; ?>"
                                         class="btn btn-danger"
                                         onclick="return confirm('Tem certeza que deseja eliminar este artista?');">
@@ -92,10 +98,15 @@
             <?php endforeach; ?>
         </div>
     <?php else: ?>
+        <!-- Mensagem exibida se não houver artistas -->
         <div class="alert alert-info" role="alert">
             <i class="fas fa-info-circle me-2"></i>Nenhum artista encontrado.
         </div>
     <?php endif; ?>
 </div>
 
+<<<<<<< HEAD
 <?php include 'app/views/partials/footer.php'; ?>
+=======
+<?php include 'app/views/partials/footer.php'; ?> <!-- Inclui o rodapé da página -->
+>>>>>>> ae21280ba224c001faeb1524a3b81065ff9b259b

@@ -1,10 +1,12 @@
 <?php include 'app/views/partials/header.php'; ?>
-  <div class="jumbotron text-center" style="background-color: #ffffff; color: #000000;">
+
+<div class="jumbotron text-center" style="background-color: #ffffff; color: #000000;">
   <h1 class="display-4">Sound808</h1>
   <p class="lead">Explore o mundo da música através de artistas, géneros, álbuns e produtores.</p>
 </div>
 
 <div class="row">
+  <!-- Cartão Artistas -->
   <div class="col-md-4 mb-4">
     <div class="card h-100">
       <div class="card-body text-center">
@@ -15,10 +17,11 @@
       </div>
     </div>
   </div>
+
+  <!-- Cartão Géneros -->
   <div class="col-md-4 mb-4">
     <div class="card h-100">
       <div class="card-body text-center">
-     
         <i class="fa-solid fa-headphones-simple fa-3x mb-3 text-success"></i>
         <h5 class="card-title">Géneros</h5>
         <p class="card-text">Explore os diferentes estilos musicais.</p>
@@ -26,6 +29,8 @@
       </div>
     </div>
   </div>
+
+  <!-- Cartão Álbuns -->
   <div class="col-md-4 mb-4">
     <div class="card h-100">
       <div class="card-body text-center">
@@ -36,16 +41,20 @@
       </div>
     </div>
   </div>
+
+  <!-- Cartão Músicas -->
   <div class="col-md-6 mb-4">
     <div class="card h-100">
       <div class="card-body text-center">
         <i class="fas fa-music fa-3x mb-3 text-warning"></i>
         <h5 class="card-title">Músicas</h5>
-        <p class="card-text">Encontra as músicas os álbuns possuem.</p>
+        <p class="card-text">Encontra as músicas que os álbuns possuem.</p>
         <a href="<?php echo $url_alias; ?>/musica" class="btn btn-warning">Ver Músicas</a>
       </div>
     </div>
   </div>
+
+  <!-- Cartão Produtores -->
   <div class="col-md-6 mb-4">
     <div class="card h-100">
       <div class="card-body text-center">
@@ -59,7 +68,3 @@
 </div>
 
 <?php include 'app/views/partials/footer.php'; ?>
-
-
-
-
