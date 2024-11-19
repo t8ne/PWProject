@@ -103,7 +103,7 @@
     ?>
 </div>
 
-<?php include 'app/views/partials/footer.php'; ?>
+
 
     <?php if (isset($data['produtores']) && is_array($data['produtores']) && !empty($data['produtores'])): ?>
         <div class="row">
