@@ -13,17 +13,17 @@
             $cards = [
                 [
                     "title" => "Rock",
-                    "image" => "img-rock",
+                    "image" => "img-osama",
                     "text" => "O rock é um género musical que surgiu nos anos 1950, misturando blues e R&B. É conhecido pelo uso da guitarra elétrica e letras sobre liberdade e rebeldia. Influenciou diversos estilos e gerações."
                 ],
                 [
-                    "title" => "Jazz",
-                    "image" => "img-jazz",
+                    "title" => "Mallwhore Freestyle",
+                    "image" => "imgs-mallwhore",
                     "text" => "O jazz é um género musical caracterizado pela improvisação e variação rítmica. Originou no final do século XIX e influenciou diversos outros géneros musicais."
                 ],
                 [
                     "title" => "Pop",
-                    "image" => "img-pop",
+                    "image" => "imgs/fckswag.png",
                     "text" => "O pop é um género musical popular conhecido pelo seu apelo mainstream, melodias cativantes e foco em vocais e produção."
                 ],
                 [
