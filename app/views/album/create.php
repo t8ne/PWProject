@@ -22,7 +22,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="id_genero" class="form-label">Gênero:</label>
+                            <label for="id_genero" class="form-label">Género:</label>
                             <select class="form-select" id="id_genero" name="id_genero" required>
                                 <?php foreach ($data['generos'] as $genero): ?>
                                     <option value="<?php echo $genero['id_genero']; ?>" <?php echo (isset($data['album']['id_genero']) && $data['album']['id_genero'] == $genero['id_genero']) ? 'selected' : ''; ?>>
