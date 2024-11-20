@@ -81,7 +81,7 @@
 </div>
 
 <h2 class="mb-4 text-center">
-    <span class="bg-light rounded shadow p-2 text-dark">Álbuns Criados</span>
+    <span class="bg-light rounded shadow p-2 text-dark">Artistas Criados</span>
 </h2>
 
 <?php if ($isAdmin): ?>
