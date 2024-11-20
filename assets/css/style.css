@@ -81,3 +81,10 @@ body {
     background-position: center;
     background-repeat: no-repeat;
 }
+
+.img-osama {
+    background-image: url('/PWProject/imgs/osama.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}

@@ -13,7 +13,7 @@
             $cards = [
                 [
                     "title" => "Rock",
-                    "image" => "",
+                    "image" => "img-rock",
                     "text" => "O rock é um género musical que surgiu nos anos 1950, misturando blues e R&B. É conhecido pelo uso da guitarra elétrica e letras sobre liberdade e rebeldia. Influenciou diversos estilos e gerações."
                 ],
                 [
@@ -23,7 +23,7 @@
                 ],
                 [
                     "title" => "Pop",
-                    "image" => "imgs/fckswag.png",
+                    "image" => "img-osama",
                     "text" => "O pop é um género musical popular conhecido pelo seu apelo mainstream, melodias cativantes e foco em vocais e produção."
                 ],
                 [
