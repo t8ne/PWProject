@@ -13,12 +13,12 @@
             $cards = [
                 [
                     "title" => "Rock",
-                    "image" => "img-osama",
+                    "image" => "",
                     "text" => "O rock é um género musical que surgiu nos anos 1950, misturando blues e R&B. É conhecido pelo uso da guitarra elétrica e letras sobre liberdade e rebeldia. Influenciou diversos estilos e gerações."
                 ],
                 [
                     "title" => "Mallwhore Freestyle",
-                    "image" => "imgs-mallwhore",
+                    "image" => "imgs-fckswag",
                     "text" => "O jazz é um género musical caracterizado pela improvisação e variação rítmica. Originou no final do século XIX e influenciou diversos outros géneros musicais."
                 ],
                 [
@@ -28,7 +28,7 @@
                 ],
                 [
                     "title" => "Trap",
-                    "image" => "img-trap",
+                    "image" => "imgs/2hollis.jpg",
                     "text" => "O Trap é um subgénero do hip-hop que surgiu no sul dos Estados Unidos nos anos 2000. É caracterizado por batidas pesadas e presença de 808s, além de letras que exploram temas urbanos."
                 ],
             ];

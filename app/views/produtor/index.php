@@ -18,7 +18,7 @@
                 ],
                 [
                     "title" => "Pierre Bourne",
-                    "image" => "img-pierre",
+                    "image" => "imgs/pierre.jpg",
                     "text" => "Produtor musical e rapper americano de Fort Riley, Kansas, é conhecido por ter produzido os singles de 2017 Magnolia de Playboi Carti e Gummo de 6ix9ine. Tem vários álbuns em seu nome e é considerado como dos melhores produtores desta geração, criando músicas calmas e de ambiente."
                 ],
                 [
