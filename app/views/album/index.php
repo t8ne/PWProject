@@ -33,7 +33,6 @@
                 ],
             ];
 
-
             // Exibir cada card na grid
             foreach ($cards as $card) {
                 echo '
@@ -78,6 +77,7 @@
         echo "</div>";
     }
     ?>
+
 </div>
 
 <h2 class="mb-4 text-center">
@@ -92,16 +92,35 @@
     </div>
 <?php endif; ?>
 
+<?php
+// Lógica de ordenação
+$ordem = isset($_GET['ordem']) ? $_GET['ordem'] : 'asc'; // valor padrão é 'asc'
+
+// Lógica de filtro por nome (pesquisa)
+$search = isset($_GET['search']) ? $_GET['search'] : '';
+
+// Filtro: Ordenação
+usort($data['albums'], function ($a, $b) use ($ordem) {
+    if ($ordem == 'asc') {
+        return strcmp($a['nome'], $b['nome']); // Ordena A-Z
+    } 
+});
+
+
+
+?>
+
+<form method="GET" class="mb-4">
+  
+    
+    <label for="ordem" class="form-label mt-3">Ordenar por:</label>
+    <select name="ordem" id="ordem" class="form-select" onchange="this.form.submit()">
+        <option value="asc" <?php echo ($ordem == 'asc') ? 'selected' : ''; ?>>A-Z</option>
+    
+    </select>
+</form>
+
 <?php if (isset($data['albums']) && is_array($data['albums']) && !empty($data['albums'])): ?>
-    <form method="GET" class="mb-4" action="<?php echo $url_alias; ?>/album">
-        <label for="ordem" class="form-label">Ordenar por:</label>
-        <select name="ordem" id="ordem" class="form-select" onchange="this.form.submit()">
-            <option value="asc" <?php echo (isset($data['ordem']) && $data['ordem'] == 'asc') ? 'selected' : ''; ?>>A-Z
-            </option>
-            <option value="desc" <?php echo (isset($data['ordem']) && $data['ordem'] == 'desc') ? 'selected' : ''; ?>>Z-A
-            </option>
-        </select>
-    </form>
     <div class="row">
         <?php foreach ($data['albums'] as $album): ?>
             <?php if (is_array($album) && isset($album['id_album'], $album['nome'])): ?>
@@ -111,17 +130,17 @@
                             <h5 class="card-title"><?php echo htmlspecialchars($album['nome']); ?></h5>
                             <div class="btn-group" role="group">
                                 <a href="<?php echo $url_alias; ?>/album/get/<?php echo $album['id_album']; ?>"
-                                    class="btn btn-primary">
+                                   class="btn btn-primary">
                                     <i class="fas fa-eye me-1"></i>Ver
                                 </a>
                                 <?php if ($isAdmin): ?>
                                     <a href="<?php echo $url_alias; ?>/album/update/<?php echo $album['id_album']; ?>"
-                                        class="btn btn-warning">
+                                       class="btn btn-warning">
                                         <i class="fas fa-edit me-1"></i>Editar
                                     </a>
                                     <a href="<?php echo $url_alias; ?>/album/delete/<?php echo $album['id_album']; ?>"
-                                        class="btn btn-danger"
-                                        onclick="return confirm('Tem a certeza que deseja eliminar este álbum?');">
+                                       class="btn btn-danger"
+                                       onclick="return confirm('Tem a certeza que deseja eliminar este álbum?');">
                                         <i class="fas fa-trash-alt me-1"></i>Eliminar
                                     </a>
                                 <?php endif; ?>
@@ -137,6 +156,7 @@
         <i class="fas fa-info-circle me-2"></i>Nenhum álbum encontrado.
     </div>
 <?php endif; ?>
+
 </div>
 
 <?php include 'app/views/partials/footer.php'; ?>
