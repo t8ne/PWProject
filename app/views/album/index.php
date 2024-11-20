@@ -20,17 +20,17 @@
             case 'INSERT':
                 $alertClass = 'alert-success';
                 $icon = 'fa-check-circle';
-                $message = 'Género - ' . htmlspecialchars($data['info']['nome']) . ' - inserido com sucesso.';
+                $message = 'Álbum - ' . htmlspecialchars($data['info']['nome']) . ' - inserido com sucesso.';
                 break;
             case 'UPDATE':
                 $alertClass = 'alert-info';
                 $icon = 'fa-edit';
-                $message = 'A informação do género - ' . htmlspecialchars($data['info']['nome']) . ' - foi atualizada.';
+                $message = 'A informação do álbum - ' . htmlspecialchars($data['info']['nome']) . ' - foi atualizada.';
                 break;
             case 'DELETE':
                 $alertClass = 'alert-warning';
                 $icon = 'fa-trash-alt';
-                $message = 'O género - ' . htmlspecialchars($data['info']['nome']) . ' - foi eliminado.';
+                $message = 'O álbum - ' . htmlspecialchars($data['info']['nome']) . ' - foi eliminado.';
                 break;
         }
         echo "<div class='alert $alertClass' role='alert'>";
