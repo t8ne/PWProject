@@ -41,6 +41,16 @@
         echo "<i class='fas $icon me-2'></i>$message";
         echo "</div>";
     }
+
+    // Ordena as músicas por ordem alfabética
+    if (isset($data['musicas']) && is_array($data['musicas'])) {
+        $ordem = isset($_GET['ordem']) ? $_GET['ordem'] : 'asc'; // Obtém a ordem (padrão: asc)
+        usort($data['musicas'], function ($a, $b) use ($ordem) {
+            return $ordem === 'asc'
+                ? strcasecmp($a['nome'], $b['nome']) // A-Z
+                : strcasecmp($b['nome'], $a['nome']); // Z-A
+        });
+    }
     ?>
 
     <?php if (isset($data['musicas']) && is_array($data['musicas']) && !empty($data['musicas'])): ?>
@@ -50,10 +60,9 @@
             <select name="ordem" id="ordem" class="form-select" onchange="this.form.submit()">
                 <option value="asc" <?php echo (isset($_GET['ordem']) && $_GET['ordem'] == 'asc') ? 'selected' : ''; ?>>A-Z
                 </option>
-                <option value="desc" <?php echo (isset($_GET['ordem']) && $_GET['ordem'] == 'desc') ? 'selected' : ''; ?>>Z-A
-                </option>
             </select>
         </form>
+
         <div class="row">
             <?php foreach ($data['musicas'] as $musica): ?> <!-- Itera sobre a lista de músicas -->
                 <div class="col-md-4 mb-4"> <!-- Define a largura e espaçamento de cada música na grade -->
@@ -65,19 +74,19 @@
                             <div class="btn-group" role="group">
                                 <!-- Botão para visualizar a música -->
                                 <a href="<?php echo $url_alias; ?>/musica/get/<?php echo $musica['id_musica']; ?>"
-                                    class="btn btn-primary">
+                                   class="btn btn-primary">
                                     <i class="fas fa-eye me-1"></i>Ver
                                 </a>
                                 <?php if ($isAdmin): ?> <!-- Botões adicionais para administrador -->
                                     <!-- Botão para editar a música -->
                                     <a href="<?php echo $url_alias; ?>/musica/update/<?php echo $musica['id_musica']; ?>"
-                                        class="btn btn-warning">
+                                       class="btn btn-warning">
                                         <i class="fas fa-edit me-1"></i>Editar
                                     </a>
                                     <!-- Botão para excluir a música com confirmação -->
                                     <a href="<?php echo $url_alias; ?>/musica/delete/<?php echo $musica['id_musica']; ?>"
-                                        class="btn btn-danger"
-                                        onclick="return confirm('Tem certeza que deseja eliminar esta música?');">
+                                       class="btn btn-danger"
+                                       onclick="return confirm('Tem certeza que deseja eliminar esta música?');">
                                         <i class="fas fa-trash-alt me-1"></i>Eliminar
                                     </a>
                                 <?php endif; ?>

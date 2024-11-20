@@ -31,6 +31,16 @@
                 ],
             ];
 
+<<<<<<< HEAD
+=======
+            // Ordenação dos cards estáticos
+            $ordem = isset($_GET['ordem']) ? $_GET['ordem'] : 'asc';
+            usort($cards, function ($a, $b) use ($ordem) {
+                return $ordem === 'asc'
+                    ? strcasecmp($a['title'], $b['title']) // A-Z
+                    : strcasecmp($b['title'], $a['title']); // Z-A
+            });
+>>>>>>> fdb6085e1fd0912243f24274a3e70ddfe6e8da1d
 
             // Exibir cada card na grid
             foreach ($cards as $card) {
@@ -88,15 +98,31 @@
     </div>
 <?php endif; ?>
 
+<?php
+// Ordenação dos produtores dinâmicos
+if (isset($data['produtores']) && is_array($data['produtores'])) {
+    usort($data['produtores'], function ($a, $b) use ($ordem) {
+        return $ordem === 'asc'
+            ? strcasecmp($a['nome'], $b['nome']) // A-Z
+            : strcasecmp($b['nome'], $a['nome']); // Z-A
+    });
+}
+?>
+
 <?php if (isset($data['produtores']) && is_array($data['produtores']) && !empty($data['produtores'])): ?>
     <!-- Formulário para seleção da ordem alfabética -->
     <form method="GET" class="mb-4">
         <label for="ordem" class="form-label">Ordenar por:</label>
         <select name="ordem" id="ordem" class="form-select" onchange="this.form.submit()">
+<<<<<<< HEAD
             <option value="asc" <?php echo (isset($_GET['ordem']) && $_GET['ordem'] == 'asc') ? 'selected' : ''; ?>>A-Z
             </option>
             <option value="desc" <?php echo (isset($_GET['ordem']) && $_GET['ordem'] == 'desc') ? 'selected' : ''; ?>>Z-A
             </option>
+=======
+            <option value="asc" <?php echo ($ordem === 'asc') ? 'selected' : ''; ?>>A-Z</option>
+            <option value="desc" <?php echo ($ordem === 'desc') ? 'selected' : ''; ?>>Z-A</option>
+>>>>>>> fdb6085e1fd0912243f24274a3e70ddfe6e8da1d
         </select>
     </form>
     <div class="row">
@@ -108,17 +134,17 @@
                             <h5 class="card-title"><?php echo htmlspecialchars($produtor['nome']); ?></h5>
                             <div class="btn-group" role="group">
                                 <a href="<?php echo $url_alias; ?>/produtor/get/<?php echo $produtor['id_produtor']; ?>"
-                                    class="btn btn-primary">
+                                   class="btn btn-primary">
                                     <i class="fas fa-eye me-1"></i>Ver
                                 </a>
                                 <?php if ($isAdmin): ?>
                                     <a href="<?php echo $url_alias; ?>/produtor/update/<?php echo $produtor['id_produtor']; ?>"
-                                        class="btn btn-warning">
+                                       class="btn btn-warning">
                                         <i class="fas fa-edit me-1"></i>Editar
                                     </a>
                                     <a href="<?php echo $url_alias; ?>/produtor/delete/<?php echo $produtor['id_produtor']; ?>"
-                                        class="btn btn-danger"
-                                        onclick="return confirm('Tem certeza que deseja eliminar este produtor?');">
+                                       class="btn btn-danger"
+                                       onclick="return confirm('Tem certeza que deseja eliminar este produtor?');">
                                         <i class="fas fa-trash-alt me-1"></i>Eliminar
                                     </a>
                                 <?php endif; ?>
