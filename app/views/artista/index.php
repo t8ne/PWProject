@@ -81,52 +81,54 @@
         echo "</div>";
     }
     ?>
-</div>
 
-<h2 class="mb-4 text-center">
-    <span class="bg-light rounded shadow p-2 text-dark">Artistas Criados</span>
-</h2>
+    <h2 class="mb-4 text-center">
+        <span class="bg-light rounded shadow p-2 text-dark">Artistas Criados</span>
+    </h2>
 
-<?php if ($isAdmin): ?>
-    <!-- Botão para criar um novo artista -->
-    <div class="mb-3">
-        <a href="<?php echo $url_alias; ?>/artista/create" class="btn btn-primary">
-            <i class="fas fa-plus-circle me-2"></i>Novo Artista
-        </a>
-    </div>
-<?php endif; ?>
+    <?php if ($isAdmin): ?>
+        <!-- Botão para criar um novo artista -->
+        <div class="mb-3">
+            <a href="<?php echo $url_alias; ?>/artista/create" class="btn btn-primary">
+                <i class="fas fa-plus-circle me-2"></i>Novo Artista
+            </a>
+        </div>
+    <?php endif; ?>
 
-<?php
-// Verifica se existem artistas na base de dados para exibir
-if (isset($data['artista']) && is_array($data['artista']) && !empty($data['artista'])): 
-?>
-   <!-- Formulário para ordenar artistas -->
-<form method="GET" class="mb-4" action="<?php echo $url_alias; ?>/artista">
-    <label for="ordem" class="form-label">Ordenar por:</label>
-    <select name="ordem" id="ordem" class="form-select" onchange="this.form.submit()">
-        <option value="asc" <?php echo (isset($data['ordem']) && $data['ordem'] == 'asc') ? 'selected' : ''; ?>>A-Z</option>
-        <option value="desc" <?php echo (isset($data['ordem']) && $data['ordem'] == 'desc') ? 'selected' : ''; ?>>Z-A</option>
-    </select>
-</form>
+    <!-- Verifica se existem artistas na base de dados para exibir -->
+    <?php if (isset($data['artista']) && is_array($data['artista']) && !empty($data['artista'])): ?>
+        <!-- Formulário para ordenar artistas -->
+        <form method="GET" class="mb-4" action="<?php echo $url_alias; ?>/artista">
+            <label for="ordem" class="form-label">Ordenar por:</label>
+            <select name="ordem" id="ordem" class="form-select" onchange="this.form.submit()">
+                <option value="asc" <?php echo (isset($data['ordem']) && $data['ordem'] == 'asc') ? 'selected' : ''; ?>>A-Z</option>
+                <option value="desc" <?php echo (isset($data['ordem']) && $data['ordem'] == 'desc') ? 'selected' : ''; ?>>Z-A</option>
+            </select>
+        </form>
 
-    <div class="row">
-        <?php foreach ($data['artista'] as $artista): ?>
-            <?php if (is_array($artista) && isset($artista['id_artista'], $artista['nome'])): ?>
-                <!-- Card para cada artista da base de dados -->
+        <div class="row">
+            <?php foreach ($data['artista'] as $artist): ?> <!-- Itera sobre cada artista -->
                 <div class="col-md-4 mb-4">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title"><?php echo htmlspecialchars($artista['nome']); ?></h5>
+                            <!-- Exibe o nome do artista -->
+                            <h5 class="card-title"><?php echo htmlspecialchars($artist['nome']); ?></h5>
                             <div class="btn-group" role="group">
-                                <a href="<?php echo $url_alias; ?>/artista/get/<?php echo $artista['id_artista']; ?>" class="btn btn-primary">
+                                <!-- Botão para visualizar o artista -->
+                                <a href="<?php echo $url_alias; ?>/artista/get/<?php echo $artist['id_artista']; ?>"
+                                    class="btn btn-primary">
                                     <i class="fas fa-eye me-1"></i>Ver
                                 </a>
-                                <?php if ($isAdmin): ?>
-                                    <a href="<?php echo $url_alias; ?>/artista/update/<?php echo $artista['id_artista']; ?>" class="btn btn-warning">
+                                <?php if ($isAdmin): ?> <!-- Opções adicionais para administradores -->
+                                    <!-- Botão para editar o artista -->
+                                    <a href="<?php echo $url_alias; ?>/artista/update/<?php echo $artist['id_artista']; ?>"
+                                        class="btn btn-warning">
                                         <i class="fas fa-edit me-1"></i>Editar
                                     </a>
-                                    <a href="<?php echo $url_alias; ?>/artista/delete/<?php echo $artista['id_artista']; ?>" class="btn btn-danger"
-                                        onclick="return confirm('Tem a certeza que deseja eliminar este artista?');">
+                                    <!-- Botão para excluir o artista -->
+                                    <a href="<?php echo $url_alias; ?>/artista/delete/<?php echo $artist['id_artista']; ?>"
+                                        class="btn btn-danger"
+                                        onclick="return confirm('Tem certeza que deseja eliminar este artista?');">
                                         <i class="fas fa-trash-alt me-1"></i>Eliminar
                                     </a>
                                 <?php endif; ?>
@@ -134,15 +136,14 @@ if (isset($data['artista']) && is_array($data['artista']) && !empty($data['artis
                         </div>
                     </div>
                 </div>
-            <?php endif; ?>
-        <?php endforeach; ?>
-    </div>
-<?php else: ?>
-    <!-- Mensagem caso não haja artistas cadastrados -->
-    <div class="alert alert-info" role="alert">
-        <i class="fas fa-info-circle me-2"></i>Nenhum artista encontrado.
-    </div>
-<?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+    <?php else: ?>
+        <!-- Mensagem exibida se não houver artistas -->
+        <div class="alert alert-info" role="alert">
+            <i class="fas fa-info-circle me-2"></i>Nenhum artista encontrado.
+        </div>
+    <?php endif; ?>
 </div>
 
 <!-- Importando o rodapé -->
