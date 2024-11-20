@@ -88,3 +88,52 @@ body {
     background-position: center;
     background-repeat: no-repeat;
 }
+
+.img-meh {
+    background-image: url('/PWProject/imgs/meh.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.img-mallwhore {
+    background-image: url('/PWProject/imgs/mallwhore.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.img-fckswag {
+    background-image: url('/PWProject/imgs/fckswag.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.img-joydivision {
+    background-image: url('/PWProject/imgs/joydivision.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.img-eternal {
+    background-image: url('/PWProject/imgs/eternal.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.img-yunglean {
+    background-image: url('/PWProject/imgs/yunglean.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.img-bladee {
+    background-image: url('/PWProject/imgs/bladee.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}

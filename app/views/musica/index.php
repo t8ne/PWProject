@@ -12,24 +12,24 @@
             // Gêneros estáticos e dinâmicos
             $cards = [
                 [
-                    "title" => "Rock",
-                    "image" => "img-rock",
-                    "text" => "O rock é um género musical que surgiu nos anos 1950, misturando blues e R&B. É conhecido pelo uso da guitarra elétrica e letras sobre liberdade e rebeldia. Influenciou diversos estilos e gerações."
+                    "title" => "@Meh",
+                    "image" => "img-meh",
+                    "text" => "@Meh foi um single lançado pelo artista Playboi Carti em 16 de abril de 2020 para o seu álbum Whole Lotta Red. Esta música foi recebida com um feedback muito diferente com os fãs a não gostarem da nova voz do artista."
                 ],
                 [
                     "title" => "Mallwhore Freestyle",
-                    "image" => "imgs-fckswag",
-                    "text" => "O jazz é um género musical caracterizado pela improvisação e variação rítmica. Originou no final do século XIX e influenciou diversos outros géneros musicais."
+                    "image" => "img-mallwhore",
+                    "text" => "Mallwhore Freestyle é uma das músicas mais populares do álbum Icedancer do artista Bladee. Esta música apresenta um beat mais relaxado juntamente com a sua melodia calma e o artista a usar o autotune na perfeição para criar uma das melhores músicas do mesmo."
                 ],
                 [
-                    "title" => "Pop",
+                    "title" => "The Whole World is Free",
                     "image" => "img-osama",
-                    "text" => "O pop é um género musical popular conhecido pelo seu apelo mainstream, melodias cativantes e foco em vocais e produção."
+                    "text" => "The Whole World is Free é um single do artista Osamason produzido por WeGonBeOK em 2024. Este single foi primeiramente lançado no Soundcloud e só depois no Youtube e Spotify. A produção apresenta um sample de uma das músicas do artista Skrillex, e é um dos singles do seu próximo albúm."
                 ],
                 [
-                    "title" => "Trap",
-                    "image" => "imgs/2hollis.jpg",
-                    "text" => "O Trap é um subgénero do hip-hop que surgiu no sul dos Estados Unidos nos anos 2000. É caracterizado por batidas pesadas e presença de 808s, além de letras que exploram temas urbanos."
+                    "title" => "F*ck Swag",
+                    "image" => "img-fckswag",
+                    "text" => "A música F*ck Swag do artista Nettspend é um single do álbum pendente BAFK. É produzido pelo produtor WeGonBeOK e é uma música que mostra a cadência e adaptabilidade do jovem artista de 17 anos."
                 ],
             ];
 

@@ -3,10 +3,10 @@
 <link rel="stylesheet" href="/PWProject/assets/css/style.css">
 
 <div class="container">
+    <h2 class="mb-4 text-center">
+        <span class="bg-light rounded shadow p-2 text-dark">Géneros Populares</span>
+    </h2>
     <div class="container">
-        <h2 class="mb-4 text-center">
-            <span class="bg-light rounded shadow p-2 text-dark">Géneros Populares</span>
-        </h2>
         <div class="row">
             <?php
             // Gêneros estáticos e dinâmicos
