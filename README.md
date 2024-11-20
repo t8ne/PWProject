@@ -1,4 +1,4 @@
-# ProjetoPW - Sistema de Gestão de Música
+# Sound808 - Sistema de Gestão de Música
 
 Este projeto é uma aplicação web desenvolvida em PHP que permite a gestão de músicas, álbuns, géneros, produtores e artistas. O sistema foi desenvolvido com uma estrutura de MVC (Model-View-Controller) e utiliza o servidor Apache com o XAMPP para ambiente de desenvolvimento.
 
@@ -34,7 +34,7 @@ Para configurar um alias no Apache e acessar o projeto diretamente através de `
 2. **Abra o arquivo `httpd-autoindex.conf`** (localizado em `/xampp/apache/conf/extra/`) e adicione o alias para o projeto:
 
     ```apacheconf
-    Alias /projetopw/ "C:/xampp/htdocs/PW/ProjetoPW/"
+    Alias /PWProject/ "C:/xampp/htdocs/PW/ProjetoPW/"
     <Directory "C:/xampp/htdocs/PW/ProjetoPW">
         Options Indexes FollowSymLinks Includes ExecCGI
         AllowOverride All
@@ -45,5 +45,5 @@ Para configurar um alias no Apache e acessar o projeto diretamente através de `
 
 3. **Reinicie o Apache** através do painel de controle do XAMPP, clicando no botão Stop e de seguida Start para aplicar as mudanças.
 
-Agora já consegue acessar o projeto através do endereço: `http://localhost/projetopw/`
+Agora já consegue acessar o projeto através do endereço: `http://localhost/PWProject/`
 

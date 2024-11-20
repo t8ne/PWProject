@@ -26,7 +26,13 @@ class Musica
     public static function findMusicaById($id)
     {
         $db = new Db();
-        $sql = "SELECT id_musica, nome, tempo, id_album, id_produtor FROM Musica WHERE id_musica = ?";
+        $sql = "SELECT m.id_musica, m.nome, m.tempo, 
+                       m.id_album, a.nome AS nome_album, 
+                       m.id_produtor, p.nome AS nome_produtor
+                FROM Musica m
+                LEFT JOIN Album a ON m.id_album = a.id_album
+                LEFT JOIN Produtor p ON m.id_produtor = p.id_produtor
+                WHERE m.id_musica = ?";
         return $db->execQuery($sql, [$id]);
     }
 
@@ -120,6 +126,14 @@ class Musica
         $db = new Db();
         $sql = "SELECT COUNT(*) AS total FROM Musica WHERE id_album = ?";
         $result = $db->execQuery($sql, [$albumId]);
+        return $result[0]['total'] ?? 0; // Retorna o número de músicas associadas ou 0 se não houver músicas.
+    }
+
+    public static function countMusicasByArtista($artistaId)
+    {
+        $db = new Db();
+        $sql = "SELECT COUNT(*) AS total FROM Musica WHERE id_artista = ?";
+        $result = $db->execQuery($sql, [$artistaId]);
         return $result[0]['total'] ?? 0; // Retorna o número de músicas associadas ou 0 se não houver músicas.
     }
 

@@ -129,15 +129,17 @@ class Artista extends Controller
     {
         if (is_numeric($id)) {
             $Albums = $this->model('Album');
+            $Musicas = $this->model('Musica');
             $albumCount = $Albums::countAlbumsByArtista($id);
+            $musicaCount = $Musicas::countMusicasByArtista($id);
 
-            // Verifica se o artista possui álbuns associados
-            if ($albumCount > 0) {
-                // Se houver álbuns, solicita confirmação antes de excluir
-                $info = "Este artista possui $albumCount álbuns associados. Deseja excluir todos os álbuns associados junto com o artista?";
+            // Verifica se o artista possui álbuns ou músicas associadas
+            if ($albumCount > 0 || $musicaCount > 0) {
+                // Se houver álbuns ou músicas, solicita confirmação antes de excluir
+                $info = "Este artista possui $albumCount álbuns e $musicaCount músicas associados. Deseja excluir todos os álbuns e músicas associados junto com o artista?";
                 $this->view('artista/confirmDelete', ['artista_id' => $id, 'info' => $info]);
             } else {
-                // Se não houver álbuns, exclui o artista diretamente
+                // Se não houver álbuns ou músicas, exclui o artista diretamente
                 $Artistas = $this->model('Artista');
                 $info = $Artistas::deleteArtista($id);
 

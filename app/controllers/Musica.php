@@ -12,7 +12,7 @@ class Musica extends Controller
         $Musicas = $this->model('Musica');
         // Recupera todas as músicas da base de dados
         $data = $Musicas::getAllMusicas();
-        
+
         // Passa os dados para a view, para exibir todas as músicas
         $this->view('musica/index', ['musicas' => $data]);
     }
@@ -26,7 +26,7 @@ class Musica extends Controller
             $Musicas = $this->model('Musica');
             // Recupera a música específica pelo ID
             $data = $Musicas::findMusicaById($id);
-            
+
             // Se a música for encontrada, exibe seus detalhes
             if ($data) {
                 $this->view('musica/get', ['musica' => $data]);
@@ -57,10 +57,10 @@ class Musica extends Controller
                 'id_album' => $_POST['id_album'],
                 'id_produtor' => $_POST['id_produtor']
             ];
-            
+
             // Adiciona a música ao banco de dados
             $info = $Musicas::addMusica($newMusicaData);
-            
+
             // Recupera todas as músicas e exibe na página, junto com uma mensagem de sucesso
             $data = $Musicas::getAllMusicas();
             $this->view('musica/index', ['musicas' => $data, 'info' => $info, 'type' => 'INSERT']);
@@ -81,7 +81,7 @@ class Musica extends Controller
             $Musicas = $this->model('Musica');
             // Exclui a música do banco de dados com o ID fornecido
             $info = $Musicas::deleteMusica($id);
-            
+
             // Recupera todas as músicas após a exclusão e exibe na página
             $data = $Musicas::getAllMusicas();
             $this->view('musica/index', ['musicas' => $data, 'info' => $info, 'type' => 'DELETE']);
@@ -108,10 +108,10 @@ class Musica extends Controller
                 'id_album' => $_POST['id_album'] ?? '',
                 'id_produtor' => $_POST['id_produtor'] ?? ''
             ];
-            
+
             // Atualiza os dados da música no banco de dados
             $info = $Musicas::updateMusica($id, $updatedMusicaData);
-            
+
             // Recupera todas as músicas após a atualização e exibe na página
             $data = $Musicas::getAllMusicas();
             $this->view('musica/index', ['musicas' => $data, 'info' => $info, 'type' => 'UPDATE']);
@@ -122,7 +122,7 @@ class Musica extends Controller
                 // Se a música não existir, exibe a página de erro 404
                 $this->pageNotFound();
             }
-            
+
             // Recupera todos os álbuns e produtores para exibir no formulário
             $albums = $Albums::getAllAlbums();
             $produtores = $Produtores::getAllProdutores();
@@ -133,4 +133,5 @@ class Musica extends Controller
             ]);
         }
     }
+
 }

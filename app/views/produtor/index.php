@@ -1,5 +1,7 @@
 <?php include 'app/views/partials/header.php'; ?>
 
+<link rel="stylesheet" href="/PWProject/assets/css/style.css">
+
 <div class="container">
     <h2 class="mb-4" style="text-align: center">Produtores Populares</h2>
     <div class="container">
@@ -9,35 +11,36 @@
             $cards = [
                 [
                     "title" => "WeGonBeOK",
-                    "image" => "imgs/artworks-qzHznKsD1Eo0QU3J-E2yF4w-t500x500.jpg",
-                    "text" => "O rock é um género musical que surgiu nos anos 1950, misturando blues e R&B. É conhecido pelo uso da guitarra elétrica e letras sobre liberdade e rebeldia. Marcou gerações e influenciou diversos estilos."
+                    "image" => "img-ok",
+                    "text" => "William Dale Minnix III, conhecido profissionalmente como ok, é um produtor musical americano de Charlotte, Carolina do Norte."
                 ],
                 [
                     "title" => "Pierre Bourne",
-                    "image" => "imgs/ab6761610000e5eb057015e505454bc625940dc3.jpg",
-                    "text" => "O jazz é um género musical caracterizado pela improvisação e variação rítmica. Originou no final do século XIX e influenciou diversos outros géneros musicais."
+                    "image" => "img-pierre",
+                    "text" => "Produtor musical e rapper americano de Fort Riley, Kansas, é conhecido por ter produzido os singles de 2017 Magnolia de Playboi Carti e Gummo de 6ix9ine."
                 ],
                 [
                     "title" => "Richie Souf",
-                    "image" => "imgs/ab6761610000e5eb5ad21e2a5c2f5f784b1c65ab.jpg",
-                    "text" => "O pop é um género musical popular conhecido pelo seu apelo mainstream, melodias cativantes e foco em vocais e produção."
+                    "image" => "img-richie",
+                    "text" => "Produtor musical de hip hop certificado como platina, reconhecido pelas suas colaborações com Makonnen Sheran e MadeinTYO."
                 ],
                 [
                     "title" => "2hollis",
-                    "image" => "imgs/2ollis.jpg",
-                    "text" => "O Trap é um subgénero do hip-hop que surgiu no sul dos Estados Unidos nos anos 2000. É caracterizado por batidas pesadas e preseça de 808s, além de letras que exploram temas urbanos e da vida nas ruas."
+                    "image" => "img-2hollis",
+                    "text" => "Cantor, rapper e produtor americano de Chicago, Illinois. Ganhou atenção pela primeira vez com o seu álbum de 2022, White Tiger. "
                 ],
             ];
+
 
             // Exibir cada card na grid
             foreach ($cards as $card) {
                 echo '
                 <div class="col-md-3 col-sm-6 mb-4">
                     <div class="card" style="width: 100%;">
-                        <img class="card-img-top" src="' . $card["image"] . '" alt="Imagem de ' . $card["title"] . '">
+                        <div class="card-img-top ' . htmlspecialchars($card["image"]) . '" style="height: 200px;"></div>
                         <div class="card-body">
-                            <h5 class="card-title">' . $card["title"] . '</h5>
-                            <p class="card-text">' . $card["text"] . '</p>
+                            <h5 class="card-title">' . htmlspecialchars($card["title"]) . '</h5>
+                            <p class="card-text">' . htmlspecialchars($card["text"]) . '</p>
                         </div>
                     </div>
                 </div>';
@@ -91,6 +94,8 @@
         <label for="ordem" class="form-label">Ordenar por:</label>
         <select name="ordem" id="ordem" class="form-select" onchange="this.form.submit()">
             <option value="asc" <?php echo (isset($_GET['ordem']) && $_GET['ordem'] == 'asc') ? 'selected' : ''; ?>>A-Z
+            </option>
+            <option value="desc" <?php echo (isset($_GET['ordem']) && $_GET['ordem'] == 'desc') ? 'selected' : ''; ?>>Z-A
             </option>
         </select>
     </form>

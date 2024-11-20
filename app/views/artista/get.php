@@ -1,13 +1,16 @@
 <?php include 'app/views/partials/header.php'; ?> <!-- Inclui o cabeçalho da página -->
 
+<link rel="stylesheet" href="/PWProject/assets/css/style.css">
+
 <div class="container">
     <div class="row justify-content-center"> <!-- Centraliza o conteúdo horizontalmente -->
         <div class="col-md-8"> <!-- Define a largura máxima do conteúdo -->
             <div class="card mt-5"> <!-- Cria um cartão com margem superior -->
                 <div class="card-body">
                     <!-- Exibe o nome do artista no centro -->
-                    <h2 class="card-title text-center mb-4"><?php echo htmlspecialchars($data['artista']['nome']); ?></h2>
-                    
+                    <h2 class="card-title text-center mb-4"><?php echo htmlspecialchars($data['artista']['nome']); ?>
+                    </h2>
+
                     <!-- Exibe a nacionalidade do artista -->
                     <p class="text-center mb-4">
                         <strong>Nacionalidade:</strong>
@@ -21,7 +24,7 @@
                         <div class="list-group">
                             <?php foreach ($data['albums'] as $album): ?> <!-- Itera sobre cada álbum do artista -->
                                 <!-- Link para acessar os detalhes de um álbum -->
-                                <a href="<?php echo $url_alias; ?>/album/get/<?php echo $album['id_album']; ?>" 
+                                <a href="<?php echo $url_alias; ?>/album/get/<?php echo $album['id_album']; ?>"
                                     class="list-group-item list-group-item-action">
                                     <i class="fas fa-compact-disc me-2"></i>
                                     <?php echo htmlspecialchars($album['nome']); ?> <!-- Nome do álbum -->

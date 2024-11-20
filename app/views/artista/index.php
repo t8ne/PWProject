@@ -1,5 +1,7 @@
 <?php include 'app/views/partials/header.php'; ?> <!-- Inclui o cabeçalho da página -->
 
+<link rel="stylesheet" href="/PWProject/assets/css/style.css">
+
 <div class="container">
     <h2 class="mb-4" style="text-align: center">Artistas Criados</h2>
 
@@ -57,6 +59,8 @@
             <label for="ordem" class="form-label">Ordenar por:</label>
             <select name="ordem" id="ordem" class="form-select" onchange="this.form.submit()">
                 <option value="asc" <?php echo (isset($_GET['ordem']) && $_GET['ordem'] == 'asc') ? 'selected' : ''; ?>>A-Z
+                </option>
+                <option value="desc" <?php echo (isset($_GET['ordem']) && $_GET['ordem'] == 'desc') ? 'selected' : ''; ?>>Z-A
                 </option>
             </select>
         </form>

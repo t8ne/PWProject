@@ -1,5 +1,7 @@
 <?php include 'app/views/partials/header.php'; ?>
 
+<link rel="stylesheet" href="/PWProject/assets/css/style.css">
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -13,6 +15,19 @@
                         <p class="text-center mb-4">
                             <strong>Data:</strong> <?php echo htmlspecialchars($data['album'][0]['data']); ?>
                         </p>
+
+                        <h3 class="text-center mb-3">Artista</h3>
+                        <div class="list-group mb-4">
+                            <?php if (!empty($data['album'][0]['id_artista'])): ?>
+                                <a href="<?php echo $url_alias; ?>/artista/get/<?php echo htmlspecialchars($data['album'][0]['id_artista']); ?>"
+                                    class="list-group-item list-group-item-action">
+                                    <i
+                                        class="fas fa-user me-2"></i><?php echo htmlspecialchars($data['album'][0]['nome_artista']); ?>
+                                </a>
+                            <?php else: ?>
+                                <div class="list-group-item">Artista não disponível</div>
+                            <?php endif; ?>
+                        </div>
 
                         <h3 class="text-center mb-3">Músicas</h3>
                         <?php if (!empty($data['musicas']) && is_array($data['musicas'])): ?>

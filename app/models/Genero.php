@@ -6,10 +6,11 @@ use app\core\Db;
 
 class Genero
 {
-    public static function getAllGeneros()
+    public static function getAllGeneros($ordem = 'asc')
     {
-        $conn = new Db();
-        return $conn->execQuery('SELECT id_genero, nome FROM genero');
+        $db = new Db();
+        $sql = "SELECT * FROM Genero ORDER BY nome " . ($ordem === 'desc' ? 'DESC' : 'ASC');
+        return $db->execQuery($sql);
     }
 
     public static function findGeneroById($id)

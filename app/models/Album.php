@@ -15,7 +15,10 @@ class Album
     public static function findAlbumById($id)
     {
         $db = new Db();
-        $sql = "SELECT id_album, nome, data, id_artista, id_genero FROM Album WHERE id_album = ?";
+        $sql = "SELECT a.id_album, a.nome, a.data, a.id_artista, a.id_genero, ar.nome AS nome_artista 
+            FROM Album a
+            LEFT JOIN Artista ar ON a.id_artista = ar.id_artista
+            WHERE a.id_album = ?";
         return $db->execQuery($sql, [$id]);
     }
 

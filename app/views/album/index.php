@@ -46,6 +46,8 @@
             <select name="ordem" id="ordem" class="form-select" onchange="this.form.submit()">
                 <option value="asc" <?php echo (isset($_GET['ordem']) && $_GET['ordem'] == 'asc') ? 'selected' : ''; ?>>A-Z
                 </option>
+                <option value="desc" <?php echo (isset($_GET['ordem']) && $_GET['ordem'] == 'desc') ? 'selected' : ''; ?>>Z-A
+                </option>
             </select>
         </form>
         <div class="row">

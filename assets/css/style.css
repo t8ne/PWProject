@@ -15,11 +15,67 @@
     transform: scale(1.05); /* Aumenta o cartão ao passar o mouse */
 }
 
-container {
-    background-image: url('../PWProject/imgs/back.jpg'); /* Verifique o caminho da imagem */
+body {
+    background-image: url('/PWProject/imgs/back.jpg'); /* Caminho absoluto */
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
-    color: #333; /* Alterar a cor do texto para um cinza escuro */
+    color: #333; /* Cor do texto */
+}
+
+.img-rock {
+    background-image: url('/PWProject/imgs/rock.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.img-jazz {
+    background-image: url('/PWProject/imgs/jazz.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.img-pop {
+    background-image: url('/PWProject/imgs/pop.avif');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.img-trap {
+    background-image: url('/PWProject/imgs/trap.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.img-ok {
+    background-image: url('/PWProject/imgs/wegonbeok.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.img-pierre {
+    background-image: url('/PWProject/imgs/pierre.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.img-2hollis {
+    background-image: url('/PWProject/imgs/2ollis.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.img-richie {
+    background-image: url('/PWProject/imgs/richie.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
