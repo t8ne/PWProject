@@ -100,14 +100,15 @@
 // Verifica se existem artistas na base de dados para exibir
 if (isset($data['artista']) && is_array($data['artista']) && !empty($data['artista'])): 
 ?>
-    <!-- Formulário para ordenar artistas -->
-    <form method="GET" class="mb-4" action="<?php echo $url_alias; ?>/album">
-        <label for="ordem" class="form-label">Ordenar por:</label>
-        <select name="ordem" id="ordem" class="form-select" onchange="this.form.submit()">
-            <option value="asc" <?php echo (isset($data['ordem']) && $data['ordem'] == 'asc') ? 'selected' : ''; ?>>A-Z</option>
-            <option value="desc" <?php echo (isset($data['ordem']) && $data['ordem'] == 'desc') ? 'selected' : ''; ?>>Z-A</option>
-        </select>
-    </form>
+   <!-- Formulário para ordenar artistas -->
+<form method="GET" class="mb-4" action="<?php echo $url_alias; ?>/artista">
+    <label for="ordem" class="form-label">Ordenar por:</label>
+    <select name="ordem" id="ordem" class="form-select" onchange="this.form.submit()">
+        <option value="asc" <?php echo (isset($data['ordem']) && $data['ordem'] == 'asc') ? 'selected' : ''; ?>>A-Z</option>
+        <option value="desc" <?php echo (isset($data['ordem']) && $data['ordem'] == 'desc') ? 'selected' : ''; ?>>Z-A</option>
+    </select>
+</form>
+
     <div class="row">
         <?php foreach ($data['artista'] as $artista): ?>
             <?php if (is_array($artista) && isset($artista['id_artista'], $artista['nome'])): ?>
