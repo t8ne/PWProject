@@ -1,5 +1,7 @@
 <?php include 'app/views/partials/header.php'; ?>
 
+<link rel="stylesheet" href="/PWProject/assets/css/style.css">
+
 <div class="container">
     <h2 class="mb-4" style="text-align: center">Álbuns Criados</h2>
 

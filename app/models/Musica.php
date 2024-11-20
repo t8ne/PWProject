@@ -132,9 +132,12 @@ class Musica
     public static function countMusicasByArtista($artistaId)
     {
         $db = new Db();
-        $sql = "SELECT COUNT(*) AS total FROM Musica WHERE id_artista = ?";
+        $sql = "SELECT COUNT(m.id_musica) as count 
+            FROM musica m 
+            JOIN album a ON m.id_album = a.id_album 
+            WHERE a.id_artista = ?";
         $result = $db->execQuery($sql, [$artistaId]);
-        return $result[0]['total'] ?? 0; // Retorna o número de músicas associadas ou 0 se não houver músicas.
+        return $result[0]['count'] ?? 0;
     }
 
     /**
@@ -149,4 +152,13 @@ class Musica
         $sql = "DELETE FROM Musica WHERE id_album = ?";
         return $db->execQuery($sql, [$albumId]);
     }
+
+    // Na classe Musica, defina o método setAlbumToNull
+    public static function setAlbumToNull($idAlbum)
+    {
+        $db = new Db();
+        $sql = "UPDATE musica SET id_album = NULL WHERE id_album = ?";
+        $db->execQuery($sql, [$idAlbum]);
+    }
+
 }

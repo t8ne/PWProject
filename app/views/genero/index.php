@@ -92,8 +92,10 @@
     <form method="GET" class="mb-4" action="<?php echo $url_alias; ?>/genero">
         <label for="ordem" class="form-label">Ordenar por:</label>
         <select name="ordem" id="ordem" class="form-select" onchange="this.form.submit()">
-            <option value="asc" <?php echo ($data['ordem'] == 'asc') ? 'selected' : ''; ?>>A-Z</option>
-            <option value="desc" <?php echo ($data['ordem'] == 'desc') ? 'selected' : ''; ?>>Z-A</option>
+            <option value="asc" <?php echo (isset($data['ordem']) && $data['ordem'] == 'asc') ? 'selected' : ''; ?>>A-Z
+            </option>
+            <option value="desc" <?php echo (isset($data['ordem']) && $data['ordem'] == 'desc') ? 'selected' : ''; ?>>Z-A
+            </option>
         </select>
     </form>
     <div class="row">

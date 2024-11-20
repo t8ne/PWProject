@@ -160,8 +160,21 @@ class Artista extends Controller
     {
         if (is_numeric($id)) {
             $Albums = $this->model('Album');
-            // Exclui os álbuns associados ao artista
-            $Albums::deleteAlbumsByArtista($id);
+            $Musicas = $this->model('Musica');
+
+            // Verifica se o artista tem álbuns associados
+            $albumCount = $Albums::countAlbumsByArtista($id);
+
+            if ($albumCount > 0) {
+                // Se houver álbuns, exclui as músicas associadas a cada álbum
+                $albums = $Albums::getAlbumsByArtista($id);
+                foreach ($albums as $album) {
+                    // Deleta as músicas associadas ao álbum
+                    $Musicas::deleteMusicasByAlbum($album['id_album']);
+                    // Agora, deleta o álbum
+                    $Albums::deleteAlbum($album['id_album']);
+                }
+            }
 
             // Exclui o artista
             $Artistas = $this->model('Artista');
@@ -175,4 +188,6 @@ class Artista extends Controller
             $this->pageNotFound();
         }
     }
+
+
 }

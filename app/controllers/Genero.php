@@ -8,20 +8,14 @@ class Genero extends Controller
     {
         $Generos = $this->model('Genero');
 
-        // Get the sorting order from the GET parameter
+        // Get the sorting order from the GET parameter, default to 'asc' if not set
         $ordem = isset($_GET['ordem']) ? $_GET['ordem'] : 'asc';
 
         // Get sorted genres
-        $data = $Generos::getAllGeneros($ordem);
+        $generos = $Generos::getAllGeneros($ordem);
 
-        // Check if the user is an admin (you might need to adjust this based on your authentication system)
-        $isAdmin = isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin';
-
-        $this->view('genero/index', [
-            'generos' => $data,
-            'ordem' => $ordem,
-            'isAdmin' => $isAdmin
-        ]);
+        // Pass both the genres and the current order to the view
+        $this->view('genero/index', ['generos' => $generos, 'ordem' => $ordem]);
     }
 
     public function get($id = null)
