@@ -16,14 +16,14 @@ Este projeto é uma aplicação web desenvolvida em PHP que permite a gestão de
 
 ## Configuração do Alias no Apache
 
-Para configurar um alias no Apache e acessar o projeto diretamente através de `http://localhost/projetopw/`, siga estas instruções:
+Para configurar um alias no Apache e acessar o projeto diretamente através de `http://localhost/PWProject/`, siga estas instruções:
 
 1. **Abra o arquivo `httpd.conf`**:
    
    Adicione a seguinte configuração para definir o diretório do projeto:
 
     ```apacheconf
-    <Directory "C:/xampp/htdocs/PW/ProjetoPW">
+    <Directory "C:/xampp/htdocs/PWProject">
         Options Indexes FollowSymLinks Includes ExecCGI
         Allow from all
         AllowOverride All
@@ -34,7 +34,7 @@ Para configurar um alias no Apache e acessar o projeto diretamente através de `
 2. **Abra o arquivo `httpd-autoindex.conf`** (localizado em `/xampp/apache/conf/extra/`) e adicione o alias para o projeto:
 
     ```apacheconf
-    Alias /PWProject/ "C:/xampp/htdocs/PW/ProjetoPW/"
+    Alias /PWProject/ "C:/xampp/htdocs/PWProject/"
     <Directory "C:/xampp/htdocs/PW/ProjetoPW">
         Options Indexes FollowSymLinks Includes ExecCGI
         AllowOverride All
