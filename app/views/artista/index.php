@@ -1,5 +1,6 @@
 <?php include 'app/views/partials/header.php'; ?>
 
+<!-- Importando o CSS personalizado -->
 <link rel="stylesheet" href="/PWProject/assets/css/style.css">
 
 <div class="container">
@@ -9,7 +10,7 @@
         </h2>
         <div class="row">
             <?php
-            // Gêneros estáticos e dinâmicos
+            // Array estático de artistas populares (simulado, sem conexão com a base de dados)
             $cards = [
                 [
                     "title" => "Wisp",
@@ -33,8 +34,7 @@
                 ],
             ];
 
-
-            // Exibir cada card na grid
+            // Itera pelos artistas do array estático e cria um card para cada um
             foreach ($cards as $card) {
                 echo '
                 <div class="col-md-3 col-sm-6 mb-4">
@@ -52,10 +52,12 @@
     </div>
 
     <?php
+    // Verifica se há mensagens do sistema (inserção, atualização ou exclusão de artista)
     if (isset($data['info']) && is_array($data['info']) && isset($data['type'])) {
         $type = $data['type'];
         $alertClass = '';
         $icon = '';
+        // Define a mensagem e o estilo do alerta com base no tipo de operação
         switch ($type) {
             case 'INSERT':
                 $alertClass = 'alert-success';
@@ -73,6 +75,7 @@
                 $message = 'O artista - ' . htmlspecialchars($data['info']['nome']) . ' - foi eliminado.';
                 break;
         }
+        // Exibe o alerta com a mensagem correspondente
         echo "<div class='alert $alertClass' role='alert'>";
         echo "<i class='fas $icon me-2'></i>$message";
         echo "</div>";
@@ -85,6 +88,7 @@
 </h2>
 
 <?php if ($isAdmin): ?>
+    <!-- Botão para criar um novo artista -->
     <div class="mb-3">
         <a href="<?php echo $url_alias; ?>/artista/create" class="btn btn-primary">
             <i class="fas fa-plus-circle me-2"></i>Novo Artista
@@ -142,4 +146,5 @@
 <?php endif; ?>
 </div>
 
+<!-- Importando o rodapé -->
 <?php include 'app/views/partials/footer.php'; ?>
