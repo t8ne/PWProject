@@ -9,27 +9,27 @@
     <div class="container">
         <div class="row">
             <?php
-            // Gêneros estáticos e dinâmicos
+            // Géneros estáticos e dinémicos
             $cards = [
                 [
                     "title" => "WeGonBeOK",
                     "image" => "img-ok",
-                    "text" => "William Dale Minnix III, conhecido profissionalmente como ok, é um produtor musical americano de Charlotte, Carolina do Norte."
+                    "text" => "William Dale Minnix III, conhecido profissionalmente como OK, é um produtor musical americano de Charlotte, Carolina do Norte que está a revolucionar o trap recente underground com a sua produção inovadora colaborando com artistas menos conhecidos."
                 ],
                 [
                     "title" => "Pierre Bourne",
                     "image" => "img-pierre",
-                    "text" => "Produtor musical e rapper americano de Fort Riley, Kansas, é conhecido por ter produzido os singles de 2017 Magnolia de Playboi Carti e Gummo de 6ix9ine."
+                    "text" => "Produtor musical e rapper americano de Fort Riley, Kansas, é conhecido por ter produzido os singles de 2017 Magnolia de Playboi Carti e Gummo de 6ix9ine. Tem vários álbuns em seu nome e é considerado como dos melhores produtores desta geração, criando músicas calmas e de ambiente."
                 ],
                 [
                     "title" => "Richie Souf",
                     "image" => "img-richie",
-                    "text" => "Produtor musical de hip hop certificado como platina, reconhecido pelas suas colaborações com Makonnen Sheran e MadeinTYO."
+                    "text" => "Produtor musical de hip hop certificado como platina, reconhecido pelas suas colaborações com Makonnen Sheran, MadeinTYO, e uma forte presença na segunda versão do álbum Whole Lotta Red do Playboi Carti. É conhecido pelas suas melodias angélicas e produção calma."
                 ],
                 [
                     "title" => "2hollis",
                     "image" => "img-2hollis",
-                    "text" => "Cantor, rapper e produtor americano de Chicago, Illinois. Ganhou atenção pela primeira vez com o seu álbum de 2022, White Tiger. "
+                    "text" => "Cantor, e produtor americano de Chicago, Illinois. Ganhou atenção pela primeira vez com o seu álbum de 2022, White Tiger. Em 2024 abriu os concertos da tour do Ken Carson pondo assim os olhos de um público mais mainstream nele. A sua produção é inovadora misturando elementos de rage com Hyperpop e EDM."
                 ],
             ];
 
