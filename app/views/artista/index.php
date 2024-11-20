@@ -92,47 +92,50 @@
     </div>
 <?php endif; ?>
 
-<?php if (isset($data['artista']) && is_array($data['artista']) && !empty($data['artista'])): ?>
-    <form method="GET" class="mb-4" action="<?php echo $url_alias; ?>/album">
+<?php if (isset($data['artistas']) && is_array($data['artistas']) && !empty($data['artistas'])): ?>
+    <form method="GET" class="mb-4">
         <label for="ordem" class="form-label">Ordenar por:</label>
         <select name="ordem" id="ordem" class="form-select" onchange="this.form.submit()">
-            <option value="asc" <?php echo (isset($data['ordem']) && $data['ordem'] == 'asc') ? 'selected' : ''; ?>>A-Z
+            <option value="asc" <?php echo (isset($_GET['ordem']) && $_GET['ordem'] == 'asc') ? 'selected' : ''; ?>>A-Z
             </option>
-            <option value="desc" <?php echo (isset($data['ordem']) && $data['ordem'] == 'desc') ? 'selected' : ''; ?>>Z-A
+            <option value="desc" <?php echo (isset($_GET['ordem']) && $_GET['ordem'] == 'desc') ? 'selected' : ''; ?>>Z-A
             </option>
         </select>
     </form>
     <div class="row">
-        <?php foreach ($data['artista'] as $artista): ?>
-            <?php if (is_array($artista) && isset($artista['id_artista'], $artista['nome'])): ?>
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo htmlspecialchars($artista['nome']); ?></h5>
-                            <div class="btn-group" role="group">
-                                <a href="<?php echo $url_alias; ?>/artista/get/<?php echo $artista['id_artista']; ?>"
-                                    class="btn btn-primary">
-                                    <i class="fas fa-eye me-1"></i>Ver
+        <?php foreach ($data['artistas'] as $artist): ?> <!-- Itera sobre cada artista -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Exibe o nome do artista -->
+                        <h5 class="card-title"><?php echo htmlspecialchars($artist['nome']); ?></h5>
+                        <div class="btn-group" role="group">
+                            <!-- Botão para visualizar o artista -->
+                            <a href="<?php echo $url_alias; ?>/artista/get/<?php echo $artist['id_artista']; ?>"
+                                class="btn btn-primary">
+                                <i class="fas fa-eye me-1"></i>Ver
+                            </a>
+                            <?php if ($isAdmin): ?> <!-- Opções adicionais para administradores -->
+                                <!-- Botão para editar o artista -->
+                                <a href="<?php echo $url_alias; ?>/artista/update/<?php echo $artist['id_artista']; ?>"
+                                    class="btn btn-warning">
+                                    <i class="fas fa-edit me-1"></i>Editar
                                 </a>
-                                <?php if ($isAdmin): ?>
-                                    <a href="<?php echo $url_alias; ?>/artista/update/<?php echo $artista['id_artista']; ?>"
-                                        class="btn btn-warning">
-                                        <i class="fas fa-edit me-1"></i>Editar
-                                    </a>
-                                    <a href="<?php echo $url_alias; ?>/artista/delete/<?php echo $artista['id_artista']; ?>"
-                                        class="btn btn-danger"
-                                        onclick="return confirm('Tem a certeza que deseja eliminar este artista?');">
-                                        <i class="fas fa-trash-alt me-1"></i>Eliminar
-                                    </a>
-                                <?php endif; ?>
-                            </div>
+                                <!-- Botão para excluir o artista -->
+                                <a href="<?php echo $url_alias; ?>/artista/delete/<?php echo $artist['id_artista']; ?>"
+                                    class="btn btn-danger"
+                                    onclick="return confirm('Tem certeza que deseja eliminar este artista?');">
+                                    <i class="fas fa-trash-alt me-1"></i>Eliminar
+                                </a>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
-            <?php endif; ?>
+            </div>
         <?php endforeach; ?>
     </div>
 <?php else: ?>
+    <!-- Mensagem exibida se não houver artistas -->
     <div class="alert alert-info" role="alert">
         <i class="fas fa-info-circle me-2"></i>Nenhum artista encontrado.
     </div>

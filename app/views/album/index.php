@@ -92,7 +92,7 @@
     </div>
 <?php endif; ?>
 
-<?php if (isset($data['albuns']) && is_array($data['albuns']) && !empty($data['albuns'])): ?>
+<?php if (isset($data['albums']) && is_array($data['albums']) && !empty($data['albums'])): ?>
     <form method="GET" class="mb-4" action="<?php echo $url_alias; ?>/album">
         <label for="ordem" class="form-label">Ordenar por:</label>
         <select name="ordem" id="ordem" class="form-select" onchange="this.form.submit()">
@@ -103,7 +103,7 @@
         </select>
     </form>
     <div class="row">
-        <?php foreach ($data['albuns'] as $album): ?>
+        <?php foreach ($data['albums'] as $album): ?>
             <?php if (is_array($album) && isset($album['id_album'], $album['nome'])): ?>
                 <div class="col-md-4 mb-4">
                     <div class="card">
