@@ -1,5 +1,6 @@
 <?php include 'app/views/partials/header.php'; ?>
 
+<!-- Importando o CSS personalizado -->
 <link rel="stylesheet" href="/PWProject/assets/css/style.css">
 
 <div class="container">
@@ -9,7 +10,7 @@
         </h2>
         <div class="row">
             <?php
-            // Gêneros estáticos e dinâmicos
+            // Array estático de artistas populares (simulado, sem conexão com a base de dados)
             $cards = [
                 [
                     "title" => "Wisp",
@@ -33,8 +34,7 @@
                 ],
             ];
 
-
-            // Exibir cada card na grid
+            // Itera pelos artistas do array estático e cria um card para cada um
             foreach ($cards as $card) {
                 echo '
                 <div class="col-md-3 col-sm-6 mb-4">
@@ -52,10 +52,12 @@
     </div>
 
     <?php
+    // Verifica se há mensagens do sistema (inserção, atualização ou exclusão de artista)
     if (isset($data['info']) && is_array($data['info']) && isset($data['type'])) {
         $type = $data['type'];
         $alertClass = '';
         $icon = '';
+        // Define a mensagem e o estilo do alerta com base no tipo de operação
         switch ($type) {
             case 'INSERT':
                 $alertClass = 'alert-success';
@@ -73,6 +75,7 @@
                 $message = 'O artista - ' . htmlspecialchars($data['info']['nome']) . ' - foi eliminado.';
                 break;
         }
+        // Exibe o alerta com a mensagem correspondente
         echo "<div class='alert $alertClass' role='alert'>";
         echo "<i class='fas $icon me-2'></i>$message";
         echo "</div>";
@@ -85,6 +88,7 @@
 </h2>
 
 <?php if ($isAdmin): ?>
+    <!-- Botão para criar um novo artista -->
     <div class="mb-3">
         <a href="<?php echo $url_alias; ?>/artista/create" class="btn btn-primary">
             <i class="fas fa-plus-circle me-2"></i>Novo Artista
@@ -92,35 +96,35 @@
     </div>
 <?php endif; ?>
 
-<?php if (isset($data['artista']) && is_array($data['artista']) && !empty($data['artista'])): ?>
+<?php
+// Verifica se existem artistas na base de dados para exibir
+if (isset($data['artista']) && is_array($data['artista']) && !empty($data['artista'])): 
+?>
+    <!-- Formulário para ordenar artistas -->
     <form method="GET" class="mb-4" action="<?php echo $url_alias; ?>/album">
         <label for="ordem" class="form-label">Ordenar por:</label>
         <select name="ordem" id="ordem" class="form-select" onchange="this.form.submit()">
-            <option value="asc" <?php echo (isset($data['ordem']) && $data['ordem'] == 'asc') ? 'selected' : ''; ?>>A-Z
-            </option>
-            <option value="desc" <?php echo (isset($data['ordem']) && $data['ordem'] == 'desc') ? 'selected' : ''; ?>>Z-A
-            </option>
+            <option value="asc" <?php echo (isset($data['ordem']) && $data['ordem'] == 'asc') ? 'selected' : ''; ?>>A-Z</option>
+            <option value="desc" <?php echo (isset($data['ordem']) && $data['ordem'] == 'desc') ? 'selected' : ''; ?>>Z-A</option>
         </select>
     </form>
     <div class="row">
         <?php foreach ($data['artista'] as $artista): ?>
             <?php if (is_array($artista) && isset($artista['id_artista'], $artista['nome'])): ?>
+                <!-- Card para cada artista da base de dados -->
                 <div class="col-md-4 mb-4">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title"><?php echo htmlspecialchars($artista['nome']); ?></h5>
                             <div class="btn-group" role="group">
-                                <a href="<?php echo $url_alias; ?>/artista/get/<?php echo $artista['id_artista']; ?>"
-                                    class="btn btn-primary">
+                                <a href="<?php echo $url_alias; ?>/artista/get/<?php echo $artista['id_artista']; ?>" class="btn btn-primary">
                                     <i class="fas fa-eye me-1"></i>Ver
                                 </a>
                                 <?php if ($isAdmin): ?>
-                                    <a href="<?php echo $url_alias; ?>/artista/update/<?php echo $artista['id_artista']; ?>"
-                                        class="btn btn-warning">
+                                    <a href="<?php echo $url_alias; ?>/artista/update/<?php echo $artista['id_artista']; ?>" class="btn btn-warning">
                                         <i class="fas fa-edit me-1"></i>Editar
                                     </a>
-                                    <a href="<?php echo $url_alias; ?>/artista/delete/<?php echo $artista['id_artista']; ?>"
-                                        class="btn btn-danger"
+                                    <a href="<?php echo $url_alias; ?>/artista/delete/<?php echo $artista['id_artista']; ?>" class="btn btn-danger"
                                         onclick="return confirm('Tem a certeza que deseja eliminar este artista?');">
                                         <i class="fas fa-trash-alt me-1"></i>Eliminar
                                     </a>
@@ -133,10 +137,12 @@
         <?php endforeach; ?>
     </div>
 <?php else: ?>
+    <!-- Mensagem caso não haja artistas cadastrados -->
     <div class="alert alert-info" role="alert">
         <i class="fas fa-info-circle me-2"></i>Nenhum artista encontrado.
     </div>
 <?php endif; ?>
 </div>
 
+<!-- Importando o rodapé -->
 <?php include 'app/views/partials/footer.php'; ?>
