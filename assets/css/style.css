@@ -137,3 +137,31 @@ body {
     background-position: center;
     background-repeat: no-repeat;
 }
+
+.img-ss {
+    background-image: url('/PWProject/imgs/ss.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.img-wisp {
+    background-image: url('/PWProject/imgs/wisp.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.img-deftones {
+    background-image: url('/PWProject/imgs/deftones.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.img-lazerdim {
+    background-image: url('/PWProject/imgs/lazerdim.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}

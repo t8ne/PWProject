@@ -12,24 +12,24 @@
             // Gêneros estáticos e dinâmicos
             $cards = [
                 [
-                    "title" => "Eternal Atake",
-                    "image" => "img-eternal",
-                    "text" => "Eternal Atake é o segundo álbum do artista Lil Uzi Vert. Foi lançado no ano de 2020, e é considerado dos melhores álbuns de trap desta geração. O artista consegue com uma grande produção nas suas músicas captar a ambientação que a capa do álbum promete, vendendo 286 mil cópias na primeira semana."
+                    "title" => "Wisp",
+                    "image" => "img-wisp",
+                    "text" => "Wisp é uma artista musical de 20 anos nascida em São Francisco. Começou a sua carreira musical recentemente e é uma das responsáveis por trazer de volta o género Shoegaze ao mainstream. Tem vindo a lançar singles com consistência e em 2024 lançou um EP com 6 músicas."
                 ],
                 [
-                    "title" => "Starz",
-                    "image" => "img-yunglean",
-                    "text" => "Starz do artista Yung Lean é um álbum diferente dos seus predecessores, no ponto de vista de estilo de música. Yung Lean no início da década de 2010 era conhecido por um dos pioneiros de Cloud Rap sendo um dos que ajudou a levar o Rap para outros patamares. No ano de 2020 lança o álbum Starz que apresenta uma descontração e produção mais calma."
+                    "title" => "Deftones",
+                    "image" => "img-deftones",
+                    "text" => "Deftones é uma das bandas mais populares de metal rock alternativo. Com lançamentos de álbuns como Around the Fur em 1997, Koi no Yokan em 2012, White Pony em 2000 e etc., tem vindo a agregar uma base de fãs de todo o tipo de gerações tendo agora novamente uma nova base de fãs através das redes sociais."
                 ],
                 [
-                    "title" => "Cold Visions",
-                    "image" => "img-bladee",
-                    "text" => "Cold Visions lançado em 2023, é o último álbum lançado do artista sueco Bladee até à data. Este álbum foi extremamente bem recebido pelos seus fãs. Sonicamente é um álbum que apresenta um Bladee mais agressivo optando pelos sons de Rage Rap sob a produção de WakeupF1lthy."
+                    "title" => "Lazer Dim 700",
+                    "image" => "img-lazerdim",
+                    "text" => "Lazer Dim 700 é um rapper de Geórgia, Estados Unidos que tem vindo a ganhar popularidade no underground do Hip-Hop devido ao seu flow e instrumentais ortodoxos. O artista apresenta algo inovador com flows rápidos e letras inteligentes por cima dos seus beats distorcidos."
                 ],
                 [
-                    "title" => "Unknown Pleasures",
-                    "image" => "img-joydivision",
-                    "text" => "Unknown Pleasures é o primeiro de dois álbuns lançado pela banda Joy Division em 1979. Este álbum é considerado por muitos como icónico visto que foi dos primeiros álbuns a introduzir o post punk na Inglaterra. Sonicamente é um álbum com instrumentais e letras melancólicas e até suicidas que infelizmente se tornaram verdade após o suícidio do vocalista Ian Curtis."
+                    "title" => "Snow Strippers",
+                    "image" => "img-ss",
+                    "text" => "Snow Strippers é um grupo musical constituído pela cantora Tatiana e pelo produtor Graham. Os dois conheceram-se através do Tinder e até hoje no seu pouco tempo de fazer música têm uma base de fãs pelo mundo todo. Têm um estilo musical inovador misturando música eletrónica, Electropop e EDM."
                 ],
             ];
 
@@ -86,13 +86,13 @@
 
 <?php if ($isAdmin): ?>
     <div class="mb-3">
-        <a href="<?php echo $url_alias; ?>/album/create" class="btn btn-primary">
+        <a href="<?php echo $url_alias; ?>/artista/create" class="btn btn-primary">
             <i class="fas fa-plus-circle me-2"></i>Novo Artista
         </a>
     </div>
 <?php endif; ?>
 
-<?php if (isset($data['albuns']) && is_array($data['albuns']) && !empty($data['albuns'])): ?>
+<?php if (isset($data['artista']) && is_array($data['artista']) && !empty($data['artista'])): ?>
     <form method="GET" class="mb-4" action="<?php echo $url_alias; ?>/album">
         <label for="ordem" class="form-label">Ordenar por:</label>
         <select name="ordem" id="ordem" class="form-select" onchange="this.form.submit()">
@@ -103,23 +103,23 @@
         </select>
     </form>
     <div class="row">
-        <?php foreach ($data['albuns'] as $album): ?>
-            <?php if (is_array($album) && isset($album['id_album'], $album['nome'])): ?>
+        <?php foreach ($data['artista'] as $artista): ?>
+            <?php if (is_array($artista) && isset($artista['id_artista'], $artista['nome'])): ?>
                 <div class="col-md-4 mb-4">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title"><?php echo htmlspecialchars($album['nome']); ?></h5>
+                            <h5 class="card-title"><?php echo htmlspecialchars($artista['nome']); ?></h5>
                             <div class="btn-group" role="group">
-                                <a href="<?php echo $url_alias; ?>/album/get/<?php echo $album['id_album']; ?>"
+                                <a href="<?php echo $url_alias; ?>/artista/get/<?php echo $artista['id_artista']; ?>"
                                     class="btn btn-primary">
                                     <i class="fas fa-eye me-1"></i>Ver
                                 </a>
                                 <?php if ($isAdmin): ?>
-                                    <a href="<?php echo $url_alias; ?>/album/update/<?php echo $album['id_artista']; ?>"
+                                    <a href="<?php echo $url_alias; ?>/artista/update/<?php echo $artista['id_artista']; ?>"
                                         class="btn btn-warning">
                                         <i class="fas fa-edit me-1"></i>Editar
                                     </a>
-                                    <a href="<?php echo $url_alias; ?>/artista/delete/<?php echo $album['id_artista']; ?>"
+                                    <a href="<?php echo $url_alias; ?>/artista/delete/<?php echo $artista['id_artista']; ?>"
                                         class="btn btn-danger"
                                         onclick="return confirm('Tem a certeza que deseja eliminar este artista?');">
                                         <i class="fas fa-trash-alt me-1"></i>Eliminar
