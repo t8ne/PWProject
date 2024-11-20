@@ -3,7 +3,9 @@
 <link rel="stylesheet" href="/PWProject/assets/css/style.css">
 
 <div class="container">
-    <h2 class="mb-4" style="text-align: center">Artistas Criados</h2>
+    <h2 class="mb-4 text-center">
+        <span class="bg-light rounded shadow p-2 text-dark">Artistas Criados</span>
+    </h2>
 
     <?php if ($isAdmin): ?> <!-- Verifica se o usuário atual é um administrador -->
         <div class="mb-3">

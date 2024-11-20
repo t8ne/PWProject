@@ -15,6 +15,7 @@
     transform: scale(1.05); /* Aumenta o cartão ao passar o mouse */
 }
 
+/* Style do body, dá fix a um bug de imagens */
 body {
     background-image: url('/PWProject/imgs/back.jpg'); /* Caminho absoluto */
     background-size: cover;
@@ -24,6 +25,7 @@ body {
     color: #333; /* Cor do texto */
 }
 
+/* Style das imagens no 'Género' e 'Produtor' */
 .img-rock {
     background-image: url('/PWProject/imgs/rock.jpg');
     background-size: cover;
@@ -67,7 +69,7 @@ body {
 }
 
 .img-2hollis {
-    background-image: url('/PWProject/imgs/2ollis.jpg');
+    background-image: url('/PWProject/imgs/2hollis.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

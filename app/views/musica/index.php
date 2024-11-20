@@ -3,7 +3,9 @@
 <link rel="stylesheet" href="/PWProject/assets/css/style.css">
 
 <div class="container">
-    <h2 class="mb-4" style="text-align: center">Músicas Criadas</h2>
+    <h2 class="mb-4 text-center">
+        <span class="bg-light rounded shadow p-2 text-dark">Músicas Criadas</span>
+    </h2>
 
     <?php if ($isAdmin): ?> <!-- Exibe o botão para criar música apenas se o usuário for administrador -->
         <div class="mb-3">
@@ -74,19 +76,19 @@
                             <div class="btn-group" role="group">
                                 <!-- Botão para visualizar a música -->
                                 <a href="<?php echo $url_alias; ?>/musica/get/<?php echo $musica['id_musica']; ?>"
-                                   class="btn btn-primary">
+                                    class="btn btn-primary">
                                     <i class="fas fa-eye me-1"></i>Ver
                                 </a>
                                 <?php if ($isAdmin): ?> <!-- Botões adicionais para administrador -->
                                     <!-- Botão para editar a música -->
                                     <a href="<?php echo $url_alias; ?>/musica/update/<?php echo $musica['id_musica']; ?>"
-                                       class="btn btn-warning">
+                                        class="btn btn-warning">
                                         <i class="fas fa-edit me-1"></i>Editar
                                     </a>
                                     <!-- Botão para excluir a música com confirmação -->
                                     <a href="<?php echo $url_alias; ?>/musica/delete/<?php echo $musica['id_musica']; ?>"
-                                       class="btn btn-danger"
-                                       onclick="return confirm('Tem certeza que deseja eliminar esta música?');">
+                                        class="btn btn-danger"
+                                        onclick="return confirm('Tem certeza que deseja eliminar esta música?');">
                                         <i class="fas fa-trash-alt me-1"></i>Eliminar
                                     </a>
                                 <?php endif; ?>

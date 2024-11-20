@@ -3,7 +3,9 @@
 <link rel="stylesheet" href="/PWProject/assets/css/style.css">
 
 <div class="container">
-    <h2 class="mb-4" style="text-align: center">Produtores Populares</h2>
+    <h2 class="mb-4 text-center">
+        <span class="bg-light rounded shadow p-2 text-dark">Produtores Populares</span>
+    </h2>
     <div class="container">
         <div class="row">
             <?php
@@ -77,7 +79,9 @@
     ?>
 </div>
 
-<h2 class="mb-4" style="text-align: center">Produtores Criados</h2>
+<h2 class="mb-4 text-center">
+    <span class="bg-light rounded shadow p-2 text-dark">Produtores Criados</span>
+</h2>
 
 <?php if ($isAdmin): ?>
     <div class="mb-3">

@@ -4,7 +4,9 @@
 
 <div class="container">
     <div class="container">
-        <h2 class="mb-4" style="text-align: center">Géneros Populares</h2>
+        <h2 class="mb-4 text-center">
+            <span class="bg-light rounded shadow p-2 text-dark">Géneros Populares</span>
+        </h2>
         <div class="row">
             <?php
             // Gêneros estáticos e dinâmicos
@@ -78,7 +80,9 @@
     ?>
 </div>
 
-<h2 class="mb-4" style="text-align: center">Géneros Criados</h2>
+<h2 class="mb-4 text-center">
+    <span class="bg-light rounded shadow p-2 text-dark">Géneros Criados</span>
+</h2>
 
 <?php if ($isAdmin): ?>
     <div class="mb-3">
