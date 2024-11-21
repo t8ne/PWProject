@@ -1,7 +1,8 @@
-<?php include 'app/views/partials/header.php'; ?>
+<?php include 'app/views/partials/header.php'; ?> <!-- Inclui o cabeçalho da página -->
 
-<link rel="stylesheet" href="/PWProject/assets/css/style.css">
+<link rel="stylesheet" href="/PWProject/assets/css/style.css"> <!-- Inclui os estilos da página -->
 
+<!-- Parte inicial, título -->
 <div class="jumbotron text-center" style="background-color: #ffffff; color: #000000;">
   <h1 class="display-4">Sound808</h1>
   <p class="lead">Explore o mundo da música através de artistas, géneros, álbuns e produtores.</p>

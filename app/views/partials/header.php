@@ -88,6 +88,7 @@ $loggedInUser = $_SESSION['user'] ?? null;
 </head>
 
 <body>
+    <!-- Navbar, aplicada a todas as páginas, com o routing das páginas principais -->
     <nav class="navbar navbar-expand-lg navbar-dark mb-4">
         <div class="container">
             <a class="navbar-brand" href="<?php echo $url_alias2; ?>">
@@ -117,6 +118,7 @@ $loggedInUser = $_SESSION['user'] ?? null;
                     <li class="nav-item">
                         <a class="nav-link">|</a>
                     </li>
+                    <!-- Login e Logout, dependendo da situation -->
                     <li class="nav-item">
                         <?php if ($loggedInUser): ?>
                             <a class="nav-link" href="<?php echo $url_alias; ?>/?logout=1">Logout

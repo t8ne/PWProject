@@ -1,6 +1,6 @@
-<?php include 'app/views/partials/header.php'; ?>
+<?php include 'app/views/partials/header.php'; ?> <!-- Inclui o cabeçalho da página -->
 
-<link rel="stylesheet" href="/PWProject/assets/css/style.css">
+<link rel="stylesheet" href="/PWProject/assets/css/style.css"> <!-- Inclui os estilos da página -->
 
 <div class="container">
     <div class="container">
@@ -8,6 +8,7 @@
             <span class="bg-light rounded shadow p-2 text-dark">Álbuns Populares</span>
         </h2>
         <div class="row">
+            <!-- Divisão de álbuns populares, vão buscar a imagem ao assets/css/style.css -->
             <?php
             // Gêneros estáticos e dinâmicos
             $cards = [
@@ -50,22 +51,26 @@
         </div>
     </div>
 
+    <!-- Diferentes tipos de avisos de informação -->
     <?php
     if (isset($data['info']) && is_array($data['info']) && isset($data['type'])) {
         $type = $data['type'];
         $alertClass = '';
         $icon = '';
         switch ($type) {
+            //Inserir álbum
             case 'INSERT':
                 $alertClass = 'alert-success';
                 $icon = 'fa-check-circle';
                 $message = 'Álbum - ' . htmlspecialchars($data['info']['nome']) . ' - inserido com sucesso.';
                 break;
+            //Atualizar álbum
             case 'UPDATE':
                 $alertClass = 'alert-info';
                 $icon = 'fa-edit';
                 $message = 'A informação do álbum - ' . htmlspecialchars($data['info']['nome']) . ' - foi atualizada.';
                 break;
+            //Eliminar álbum
             case 'DELETE':
                 $alertClass = 'alert-warning';
                 $icon = 'fa-trash-alt';
@@ -73,6 +78,7 @@
                 break;
         }
         echo "<div class='alert $alertClass' role='alert'>";
+        // Mandar a mensagem
         echo "<i class='fas $icon me-2'></i>$message";
         echo "</div>";
     }
@@ -84,6 +90,7 @@
     <span class="bg-light rounded shadow p-2 text-dark">Álbuns Criados</span>
 </h2>
 
+<!-- Se for admin, mostrar botão de Criar álbum -->
 <?php if ($isAdmin): ?>
     <div class="mb-3">
         <a href="<?php echo $url_alias; ?>/album/create" class="btn btn-primary">
@@ -103,7 +110,7 @@ $search = isset($_GET['search']) ? $_GET['search'] : '';
 usort($data['albums'], function ($a, $b) use ($ordem) {
     if ($ordem == 'asc') {
         return strcmp($a['nome'], $b['nome']); // Ordena A-Z
-    } 
+    }
 });
 
 
@@ -111,18 +118,19 @@ usort($data['albums'], function ($a, $b) use ($ordem) {
 ?>
 
 <form method="GET" class="mb-4">
-  
-    
+    <!-- Ordenar os álbuns, ascendetne ou descendente-->
     <label for="ordem" class="form-label mt-3">Ordenar por:</label>
     <select name="ordem" id="ordem" class="form-select" onchange="this.form.submit()">
         <option value="asc" <?php echo ($ordem == 'asc') ? 'selected' : ''; ?>>A-Z</option>
-    
+
     </select>
 </form>
 
+<!-- Mostrar os álbuns -->
 <?php if (isset($data['albums']) && is_array($data['albums']) && !empty($data['albums'])): ?>
     <div class="row">
         <?php foreach ($data['albums'] as $album): ?>
+            <!-- Row com os álbuns, cada um dentro do seu sítio, mostrando o nome e o ver by default -->
             <?php if (is_array($album) && isset($album['id_album'], $album['nome'])): ?>
                 <div class="col-md-4 mb-4">
                     <div class="card">
@@ -130,17 +138,18 @@ usort($data['albums'], function ($a, $b) use ($ordem) {
                             <h5 class="card-title"><?php echo htmlspecialchars($album['nome']); ?></h5>
                             <div class="btn-group" role="group">
                                 <a href="<?php echo $url_alias; ?>/album/get/<?php echo $album['id_album']; ?>"
-                                   class="btn btn-primary">
+                                    class="btn btn-primary">
                                     <i class="fas fa-eye me-1"></i>Ver
                                 </a>
+                            <!-- Se for admin, pode editar ou eliminar -->
                                 <?php if ($isAdmin): ?>
                                     <a href="<?php echo $url_alias; ?>/album/update/<?php echo $album['id_album']; ?>"
-                                       class="btn btn-warning">
+                                        class="btn btn-warning">
                                         <i class="fas fa-edit me-1"></i>Editar
                                     </a>
                                     <a href="<?php echo $url_alias; ?>/album/delete/<?php echo $album['id_album']; ?>"
-                                       class="btn btn-danger"
-                                       onclick="return confirm('Tem a certeza que deseja eliminar este álbum?');">
+                                        class="btn btn-danger"
+                                        onclick="return confirm('Tem a certeza que deseja eliminar este álbum?');">
                                         <i class="fas fa-trash-alt me-1"></i>Eliminar
                                     </a>
                                 <?php endif; ?>
@@ -153,6 +162,7 @@ usort($data['albums'], function ($a, $b) use ($ordem) {
     </div>
 <?php else: ?>
     <div class="alert alert-info" role="alert">
+        <!-- Se não houver álbuns -->
         <i class="fas fa-info-circle me-2"></i>Nenhum álbum encontrado.
     </div>
 <?php endif; ?>
