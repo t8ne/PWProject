@@ -12,7 +12,9 @@ class Produtor
         $sql = "SELECT * FROM Produtor";
         return $db->execQuery($sql);
     }
-
+/**
+     * Encontra uma produtor pelo seu ID.
+     */
 
     public static function findProdutorById(int $id)
     {
